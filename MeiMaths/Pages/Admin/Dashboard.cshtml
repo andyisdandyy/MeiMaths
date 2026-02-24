@@ -6,6 +6,93 @@
 
 <h2 class="mb-4">📊 Admin Dashboard</h2>
 
+@if (Model.StatusMessage is not null)
+{
+    <div class="alert @(Model.StatusSuccess ? "alert-success" : "alert-danger") alert-dismissible fade show" role="alert">
+        @Model.StatusMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<!-- ── Opgavesæt administration ── -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">📁 Opgavesæt (@Model.ExerciseSets.Count indlæst)</h5>
+        <form method="post" asp-page-handler="Refresh" class="d-inline">
+            <button type="submit" class="btn btn-outline-primary btn-sm">🔄 Genindlæs fra disk</button>
+        </form>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-sm mb-0 align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Filnavn</th>
+                        <th>Titel</th>
+                        <th>ID</th>
+                        <th>Kategori</th>
+                        <th class="text-center">Opgaver</th>
+                        <th class="text-center">Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var es in Model.ExerciseSets)
+                    {
+                        <tr>
+                            <td><code>@es.FileName</code></td>
+                            <td>@es.Title</td>
+                            <td><code>@es.Id</code></td>
+                            <td>@es.Category</td>
+                            <td class="text-center">@es.QuestionCount</td>
+                            <td class="text-center">
+                                @if (es.IsValid)
+                                {
+                                    <span class="badge bg-success">✓ OK</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">✗ Fejl</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <form method="post" asp-page-handler="DeleteExerciseSet" class="d-inline"
+                                      onsubmit="return confirm('Er du sikker på du vil slette @es.FileName?');">
+                                    <input type="hidden" name="filename" value="@es.FileName" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">🗑️</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ── Tilføj nyt opgavesæt ── -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">➕ Tilføj nyt opgavesæt</h5>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-page-handler="AddExerciseSet">
+            <div class="mb-3">
+                <label for="NewFileName" class="form-label"><strong>Filnavn</strong> (uden .json er OK)</label>
+                <input asp-for="NewFileName" class="form-control" placeholder="f.eks. geometri-vinkler" />
+            </div>
+            <div class="mb-3">
+                <label for="NewJsonContent" class="form-label"><strong>JSON-indhold</strong> (hele opgavesættet)</label>
+                <textarea asp-for="NewJsonContent" class="form-control font-monospace" rows="14"
+                          placeholder='{ "id": "mit-opgavesaet", "category": "Tal og algebra", "title": "Min titel", "description": "Beskrivelse", "questions": [ ... ] }'></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">💾 Gem opgavesæt</button>
+        </form>
+    </div>
+</div>
+
+<hr class="my-4" />
+
 @if (Model.TopicProgress.Count > 0)
 {
     <h4 class="mt-2 mb-3">📈 Fremskridt pr. emne</h4>
