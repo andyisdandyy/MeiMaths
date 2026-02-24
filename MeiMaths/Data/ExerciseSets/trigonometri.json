@@ -1,0 +1,139 @@
+{
+  "id": "trigonometri",
+  "category": "Geometri",
+  "title": "Trigonometri",
+  "description": "\u00d8v dig i Pythagoras, sinus, cosinus og tangens med visuelle trekanter",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "Trigonometri og Pythagoras",
+      "content": "<strong>Pythagoras\u2019 s\u00e6tning:</strong><br>I en retvinklet trekant g\u00e6lder: <strong>c\u00b2 = a\u00b2 + b\u00b2</strong><br>hvor c er hypotenusen (den l\u00e6ngste side, modsat den rette vinkel).<br><br><strong>Trigonometriske formler:</strong><br>\u2022 sin(A) = modst\u00e5ende / hypotenusen<br>\u2022 cos(A) = hosl\u00e6ggende / hypotenusen<br>\u2022 tan(A) = modst\u00e5ende / hosl\u00e6ggende<br><br><strong>Husk:</strong> SOH-CAH-TOA!",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "free-text",
+      "text": "Find l\u00e6ngden af hypotenusen c i den retvinklede trekant.",
+      "graph": {
+        "triangle": {
+          "sideA": 3,
+          "sideB": 4,
+          "angleC": 90,
+          "labels": {
+            "sideA": "a = 3",
+            "sideB": "b = 4",
+            "sideC": "c = ?",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "correctAnswer": "5",
+      "hint": "Brug Pythagoras\u2019 s\u00e6tning: c\u00b2 = a\u00b2 + b\u00b2 = 9 + 16 = 25"
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Find l\u00e6ngden af side b i den retvinklede trekant.",
+      "graph": {
+        "triangle": {
+          "sideA": 5,
+          "sideC": 13,
+          "angleC": 90,
+          "labels": {
+            "sideA": "a = 5",
+            "sideB": "b = ?",
+            "sideC": "c = 13",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "correctAnswer": "12",
+      "hint": "b\u00b2 = c\u00b2 \u2212 a\u00b2 = 169 \u2212 25 = 144. Hvad er \u221a144?"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "I en retvinklet trekant er vinkel A = 30\u00b0 og hypotenusen c = 10. Hvad er l\u00e6ngden af den modst\u00e5ende side a?",
+      "graph": {
+        "triangle": {
+          "angleA": 30,
+          "angleC": 90,
+          "sideC": 10,
+          "labels": {
+            "sideA": "a = ?",
+            "sideC": "c = 10",
+            "angleA": "30\u00b0",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "options": [ "4", "5", "6", "8" ],
+      "correctAnswer": "5",
+      "hint": "sin(A) = modst\u00e5ende / hypotenusen \u2192 a = c \u00b7 sin(30\u00b0) = 10 \u00b7 0,5"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "I en retvinklet trekant er vinkel A = 60\u00b0 og hypotenusen c = 8. Find l\u00e6ngden af den hosl\u00e6ggende side b.",
+      "graph": {
+        "triangle": {
+          "angleA": 60,
+          "angleC": 90,
+          "sideC": 8,
+          "labels": {
+            "sideB": "b = ?",
+            "sideC": "c = 8",
+            "angleA": "60\u00b0",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "correctAnswer": "4",
+      "hint": "cos(A) = hosl\u00e6ggende / hypotenusen \u2192 b = c \u00b7 cos(60\u00b0) = 8 \u00b7 0,5"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "I en retvinklet trekant er vinkel A = 45\u00b0 og hosl\u00e6ggende side b = 6. Hvad er den modst\u00e5ende side a?",
+      "graph": {
+        "triangle": {
+          "angleA": 45,
+          "angleC": 90,
+          "sideB": 6,
+          "labels": {
+            "sideA": "a = ?",
+            "sideB": "b = 6",
+            "angleA": "45\u00b0",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "options": [ "3", "4", "6", "8" ],
+      "correctAnswer": "6",
+      "hint": "tan(45\u00b0) = 1, s\u00e5 a = b \u00b7 tan(45\u00b0) = 6 \u00b7 1"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "I den viste retvinklede trekant er a = 6 og c = 12. Hvad er vinkel A i grader?",
+      "graph": {
+        "triangle": {
+          "sideA": 6,
+          "sideC": 12,
+          "angleC": 90,
+          "labels": {
+            "sideA": "a = 6",
+            "sideC": "c = 12",
+            "angleA": "A = ?",
+            "angleC": "90\u00b0"
+          }
+        }
+      },
+      "options": [ "15\u00b0", "30\u00b0", "45\u00b0", "60\u00b0" ],
+      "correctAnswer": "30\u00b0",
+      "hint": "sin(A) = a/c = 6/12 = 0,5. Hvilken vinkel har sinus = 0,5?"
+    }
+  ]
+}

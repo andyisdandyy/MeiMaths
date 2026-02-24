@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Vælg et opgavesæt";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">🧮 MeiMaths</h1>
+    <p class="lead">Vælg et opgavesæt herunder og begynd at øve dig!</p>
+</div>
+
+@if (Model.ExerciseSets.Count == 0)
+{
+    <div class="alert alert-warning text-center">
+        <p class="mb-0">Der er ingen opgavesæt tilgængelige endnu. Tilføj JSON-filer i <code>Data/ExerciseSets/</code> mappen.</p>
+    </div>
+}
+else
+{
+    @foreach (var group in Model.ExerciseSets.GroupBy(s => s.Category).OrderBy(g => g.Key))
+    {
+        var icon = group.Key switch
+        {
+            "Tal og algebra" => "🔢",
+            "Geometri" => "📐",
+            "Statistik og sandsynlighed" => "📊",
+            "Funktioner" => "📈",
+            "Ligninger" => "🧮",
+            _ => "📘"
+        };
+        <h3 class="mt-4 mb-3">@icon @group.Key</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+            @foreach (var set in group.OrderBy(s => s.Title))
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm exercise-card">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@set.Title</h5>
+                            <p class="card-text text-muted">@set.Description</p>
+                            <p class="card-text mt-auto">
+                                <small class="text-body-secondary">@set.Questions.Count opgaver</small>
+                            </p>
+                            <a asp-page="/Quiz" asp-route-id="@set.Id" class="btn btn-primary mt-2">Start øvelse →</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "formler",
+  "category": "Tal og algebra",
+  "title": "Formler",
+  "description": "\u00d8v dig i at anvende formler til at l\u00f8se problemer",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Hvad er en formel?",
+      "content": "En formel beskriver sammenh\u00e6ngen mellem st\u00f8rrelser.<br><br><strong>Hastighed:</strong> v = s / t<br>(v = hastighed, s = str\u00e6kning, t = tid)<br><br><strong>Areal af rektangel:</strong> A = l \u00d7 b<br><br><strong>Procentregning:</strong> v\u00e6rdi = procent / 100 \u00d7 grundv\u00e6rdi<br><br>For at bruge en formel inds\u00e6tter du de kendte v\u00e6rdier og l\u00f8ser for den ukendte.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "En bil k\u00f8rer 120 km p\u00e5 2 timer. Hvad er gennemsnitshastigheden i km/t?",
+      "correctAnswer": "60",
+      "hint": "v = s / t = 120 / 2"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Formlen for arealet af en cirkel er A = \u03c0 \u00d7 r\u00b2. Hvad er arealet n\u00e5r r = 3? (afrund til hele tal)",
+      "options": ["19", "28", "31", "9"],
+      "correctAnswer": "28",
+      "hint": "A = 3,14 \u00d7 3\u00b2 = 3,14 \u00d7 9 \u2248 28"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "En cyklist k\u00f8rer med 15 km/t i 3 timer. Hvor langt n\u00e5r cyklisten? (angiv i km)",
+      "correctAnswer": "45",
+      "hint": "s = v \u00d7 t = 15 \u00d7 3"
+    },
+    {
+      "id": 5,
+      "type": "info",
+      "text": "Omskrivning af formler",
+      "content": "Nogle gange skal du isolere en variabel:<br><br>Hvis <strong>v = s / t</strong>, s\u00e5:<br>\u2022 s = v \u00d7 t (gang med t p\u00e5 begge sider)<br>\u2022 t = s / v (divider med v p\u00e5 begge sider)<br><br>Det virker ligesom at l\u00f8se en ligning!",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "Et tog k\u00f8rer 300 km med en hastighed p\u00e5 150 km/t. Hvor lang tid tager turen?",
+      "options": ["1 time", "2 timer", "3 timer", "4 timer"],
+      "correctAnswer": "2 timer",
+      "hint": "t = s / v = 300 / 150"
+    }
+  ]
+}

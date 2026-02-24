@@ -1,0 +1,54 @@
+{
+  "id": "negative-tal",
+  "category": "Tal og algebra",
+  "title": "Regneregler med negative tal",
+  "description": "\u00d8v dig i at regne med negative tal",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Regneregler med negative tal",
+      "content": "<strong>Regler for fortegn:</strong><br><br>\u2022 Plus \u00d7 plus = plus: 3 \u00d7 4 = 12<br>\u2022 Minus \u00d7 minus = plus: (\u22123) \u00d7 (\u22124) = 12<br>\u2022 Plus \u00d7 minus = minus: 3 \u00d7 (\u22124) = \u221212<br>\u2022 Minus \u00d7 plus = minus: (\u22123) \u00d7 4 = \u221212<br><br><strong>Tallinjen:</strong> Negative tal ligger til venstre for 0.<br>At l\u00e6gge et negativt tal til er det samme som at tr\u00e6kke fra.<br>5 + (\u22123) = 5 \u2212 3 = 2",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "multiple-choice",
+      "text": "Hvad er \u22123 \u00d7 (\u22124)?",
+      "options": ["-12", "-7", "7", "12"],
+      "correctAnswer": "12",
+      "hint": "Minus gange minus giver plus"
+    },
+    {
+      "id": 3,
+      "type": "free-text",
+      "text": "Hvad er \u22128 + 3?",
+      "correctAnswer": "-5",
+      "hint": "Start ved \u22128 p\u00e5 tallinjen og g\u00e5 3 til h\u00f8jre"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "Hvad er 5 \u2212 (\u22124)?",
+      "options": ["1", "9", "-9", "-1"],
+      "correctAnswer": "9",
+      "hint": "At tr\u00e6kke et negativt tal fra er det samme som at l\u00e6gge til: 5 + 4 = ?"
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "Hvad er (\u22126) \u00d7 5?",
+      "correctAnswer": "-30",
+      "hint": "Minus gange plus giver minus: 6 \u00d7 5 = 30, s\u00e5 svaret er negativt"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "Hvad er \u221210 \u2212 (\u22127)?",
+      "options": ["-17", "-3", "3", "17"],
+      "correctAnswer": "-3",
+      "hint": "\u221210 \u2212 (\u22127) = \u221210 + 7 = ?"
+    }
+  ]
+}

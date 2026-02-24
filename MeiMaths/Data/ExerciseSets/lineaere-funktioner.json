@@ -1,0 +1,122 @@
+{
+  "id": "lineaere-funktioner",
+  "category": "Funktioner",
+  "title": "Line\u00e6re Funktioner",
+  "description": "\u00d8v dig i at afl\u00e6se h\u00e6ldning, sk\u00e6ring med y-aksen og forst\u00e5 line\u00e6re funktioner i et koordinatsystem",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "Line\u00e6re funktioner",
+      "content": "En line\u00e6r funktion har formen:<br><br><strong>f(x) = ax + b</strong><br><br>\u2022 <strong>a</strong> = h\u00e6ldningen (hvor stejl linjen er). Positiv a: linjen stiger. Negativ a: linjen falder.<br>\u2022 <strong>b</strong> = sk\u00e6ring med y-aksen (hvor linjen krydser y-aksen)<br><br><strong>Eksempel:</strong> f(x) = 2x + 1 har h\u00e6ldning 2 og sk\u00e6rer y-aksen i (0, 1).<br><br>To parallelle linjer har <strong>samme h\u00e6ldning</strong> men forskellig b-v\u00e6rdi.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "text": "Hvad er h\u00e6ldningen (a) for den viste funktion?",
+      "graph": {
+        "functions": [
+          { "expression": "2x+1", "color": "#0d6efd", "label": "f(x) = 2x + 1" }
+        ],
+        "xMin": -5,
+        "xMax": 5,
+        "yMin": -5,
+        "yMax": 12
+      },
+      "options": [ "1", "2", "3", "-1" ],
+      "correctAnswer": "2",
+      "hint": "H\u00e6ldningen fort\u00e6ller hvor meget y stiger n\u00e5r x stiger med 1. Kig p\u00e5 grafen: n\u00e5r x g\u00e5r fra 0 til 1, hvor meget stiger y?"
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvor sk\u00e6rer den viste funktion y-aksen? (angiv y-v\u00e6rdien)",
+      "graph": {
+        "functions": [
+          { "expression": "-x+3", "color": "#dc3545", "label": "f(x) = -x + 3" }
+        ],
+        "xMin": -5,
+        "xMax": 5,
+        "yMin": -5,
+        "yMax": 8
+      },
+      "correctAnswer": "3",
+      "hint": "Sk\u00e6ringen med y-aksen finder du ved at s\u00e6tte x = 0. Kig hvor grafen krydser y-aksen."
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvilken funktion passer til den viste graf?",
+      "graph": {
+        "functions": [
+          { "expression": "0.5x-1", "color": "#198754" }
+        ],
+        "xMin": -6,
+        "xMax": 6,
+        "yMin": -4,
+        "yMax": 4
+      },
+      "options": [ "f(x) = x - 1", "f(x) = 0,5x - 1", "f(x) = 2x - 1", "f(x) = -0,5x + 1" ],
+      "correctAnswer": "f(x) = 0,5x - 1",
+      "hint": "Find h\u00e6ldningen: n\u00e5r x stiger med 2, stiger y med 1. Og find sk\u00e6ringen med y-aksen."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "Er h\u00e6ldningen for den viste funktion positiv eller negativ?",
+      "graph": {
+        "functions": [
+          { "expression": "-2x+4", "color": "#6f42c1", "label": "f(x) = -2x + 4" }
+        ],
+        "xMin": -3,
+        "xMax": 5,
+        "yMin": -6,
+        "yMax": 10
+      },
+      "options": [ "Positiv", "Negativ", "Nul" ],
+      "correctAnswer": "Negativ",
+      "hint": "Kig p\u00e5 grafen fra venstre mod h\u00f8jre: g\u00e5r den opad eller nedad?"
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "Hvad er h\u00e6ldningen for den viste funktion?",
+      "graph": {
+        "functions": [
+          { "expression": "3x-2", "color": "#fd7e14", "label": "f(x) = 3x - 2" }
+        ],
+        "xMin": -3,
+        "xMax": 3,
+        "yMin": -8,
+        "yMax": 8
+      },
+      "correctAnswer": "3",
+      "hint": "H\u00e6ldningen er koefficienten foran x. Afl\u00e6s to punkter og beregn (y2\u2212y1)/(x2\u2212x1)."
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "Hvad er forskellen p\u00e5 de to viste funktioner?",
+      "graph": {
+        "functions": [
+          { "expression": "x+2", "color": "#0d6efd", "label": "f(x) = x + 2" },
+          { "expression": "x-1", "color": "#dc3545", "label": "g(x) = x - 1" }
+        ],
+        "xMin": -5,
+        "xMax": 5,
+        "yMin": -5,
+        "yMax": 8
+      },
+      "options": [
+        "Samme h\u00e6ldning, forskellig sk\u00e6ring med y-aksen",
+        "Forskellige h\u00e6ldninger, samme sk\u00e6ring med y-aksen",
+        "De er identiske",
+        "De sk\u00e6rer hinanden i origo"
+      ],
+      "correctAnswer": "Samme h\u00e6ldning, forskellig sk\u00e6ring med y-aksen",
+      "hint": "Begge funktioner har h\u00e6ldning 1 (koefficienten foran x er 1). Men b-v\u00e6rdien er forskellig: +2 vs -1."
+    }
+  ]
+}

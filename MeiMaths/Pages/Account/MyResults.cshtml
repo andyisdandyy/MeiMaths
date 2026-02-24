@@ -1,0 +1,115 @@
+@page
+@model MeiMaths.Pages.Account.MyResultsModel
+@{
+    ViewData["Title"] = "Mine resultater";
+}
+
+<h2 class="mb-4">📋 Mine resultater</h2>
+
+@if (Model.TotalQuizzes == 0)
+{
+    <div class="alert alert-info">
+        Du har endnu ikke gennemført nogen opgavesæt. <a asp-page="/Index">Start her →</a>
+    </div>
+}
+else
+{
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Quizzer gennemført</h5>
+                    <p class="display-6 mb-0">@Model.TotalQuizzes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Rigtige svar</h5>
+                    <p class="display-6 mb-0">@Model.TotalScore / @Model.TotalQuestions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">Gennemsnit</h5>
+                    <p class="display-6 mb-0">
+                        <span class="badge @(Model.AveragePercent >= 80 ? "bg-success" : Model.AveragePercent >= 50 ? "bg-warning text-dark" : "bg-danger") fs-4">
+                            @Model.AveragePercent%
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="mt-4 mb-3">📈 Fremskridt pr. emne</h4>
+    <div class="table-responsive mb-4">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Opgavesæt</th>
+                    <th class="text-center">Forsøg</th>
+                    <th class="text-center">Seneste</th>
+                    <th class="text-center">Bedste</th>
+                    <th>Fremskridt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cat in Model.CategoryStats)
+                {
+                    <tr>
+                        <td><strong>@cat.Title</strong></td>
+                        <td class="text-center">@cat.Attempts</td>
+                        <td class="text-center">@cat.LatestScore / @cat.LatestTotal</td>
+                        <td class="text-center">
+                            <span class="badge @(cat.BestScore >= 80 ? "bg-success" : cat.BestScore >= 50 ? "bg-warning text-dark" : "bg-danger")">
+                                @cat.BestScore%
+                            </span>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px; min-width: 120px;">
+                                <div class="progress-bar @(cat.BestScore >= 80 ? "bg-success" : cat.BestScore >= 50 ? "bg-warning" : "bg-danger")"
+                                     role="progressbar" style="width: @cat.BestScore%">
+                                    @cat.BestScore%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h4 class="mt-4 mb-3">📝 Alle resultater</h4>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Opgavesæt</th>
+                    <th class="text-center">Score</th>
+                    <th class="text-center">Procent</th>
+                    <th>Tidspunkt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in Model.Results)
+                {
+                    var pct = r.TotalQuestions > 0 ? (int)Math.Round(100.0 * r.Score / r.TotalQuestions) : 0;
+                    <tr>
+                        <td>@r.ExerciseSetTitle</td>
+                        <td class="text-center">@r.Score / @r.TotalQuestions</td>
+                        <td class="text-center">
+                            <span class="badge @(pct >= 80 ? "bg-success" : pct >= 50 ? "bg-warning text-dark" : "bg-danger")">
+                                @pct%
+                            </span>
+                        </td>
+                        <td>@r.CompletedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

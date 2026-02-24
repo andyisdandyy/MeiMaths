@@ -1,0 +1,36 @@
+@page
+@model MeiMaths.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log ind";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4">🔑 Log ind</h3>
+
+                @if (Model.ErrorMessage is not null)
+                {
+                    <div class="alert alert-danger">@Model.ErrorMessage</div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Brugernavn</label>
+                        <input asp-for="Username" class="form-control form-control-lg" autofocus />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Adgangskode</label>
+                        <input asp-for="Password" type="password" class="form-control form-control-lg" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Log ind</button>
+                </form>
+
+                <p class="text-center mt-3 mb-0">
+                    Har du ingen konto? <a asp-page="/Account/Register">Opret bruger</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

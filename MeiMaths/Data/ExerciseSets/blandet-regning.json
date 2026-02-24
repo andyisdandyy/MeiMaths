@@ -1,0 +1,61 @@
+{
+  "id": "blandet-regning",
+  "category": "Tal og algebra",
+  "title": "Blandet Regning",
+  "description": "En blanding af addition, subtraktion, multiplikation og division",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "De fire regnearter",
+      "content": "<strong>Regneregler (prioritering):</strong><br><br>1. Parenteser f\u00f8rst<br>2. Potenser<br>3. Multiplikation og division (fra venstre mod h\u00f8jre)<br>4. Addition og subtraktion (fra venstre mod h\u00f8jre)<br><br><strong>Eksempel:</strong> 3 \u00d7 4 + 5 = 12 + 5 = 17 (gang f\u00f8r plus)",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "text": "Hvad er 45 \u2212 18?",
+      "options": [ "23", "27", "33", "37" ],
+      "correctAnswer": "27",
+      "hint": "45 \u2212 18 = 45 \u2212 20 + 2"
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er 144 \u00f7 12?",
+      "correctAnswer": "12",
+      "hint": "Hvilket tal ganget med 12 giver 144?"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er 3 \u00d7 4 + 5?",
+      "options": [ "17", "27", "32", "60" ],
+      "correctAnswer": "17",
+      "hint": "Husk: gang f\u00f8r du l\u00e6gger sammen. 3 \u00d7 4 = 12, derefter + 5"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "Hvad er 100 \u2212 37?",
+      "correctAnswer": "63",
+      "hint": "Hvad skal du l\u00e6gge til 37 for at f\u00e5 100?"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Hvad er 56 \u00f7 8?",
+      "options": [ "6", "7", "8", "9" ],
+      "correctAnswer": "7",
+      "hint": "T\u00e6nk p\u00e5 8-tabellen: 8 \u00d7 ? = 56"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "Hvad er 25 \u00d7 4 \u2212 30?",
+      "correctAnswer": "70",
+      "hint": "F\u00f8rst 25 \u00d7 4 = 100, derefter 100 \u2212 30"
+    }
+  ]
+}

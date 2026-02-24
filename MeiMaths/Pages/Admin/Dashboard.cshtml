@@ -1,0 +1,131 @@
+@page
+@model MeiMaths.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2 class="mb-4">📊 Admin Dashboard</h2>
+
+@if (Model.TopicProgress.Count > 0)
+{
+    <h4 class="mt-2 mb-3">📈 Fremskridt pr. emne</h4>
+    <div class="table-responsive mb-4">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Opgavesæt</th>
+                    <th class="text-center">Forsøg</th>
+                    <th class="text-center">Brugere</th>
+                    <th class="text-center">Rigtige</th>
+                    <th class="text-center">Gennemsnit</th>
+                    <th>Fremskridt</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var topic in Model.TopicProgress)
+                {
+                    <tr>
+                        <td><strong>@topic.Title</strong></td>
+                        <td class="text-center">@topic.TotalAttempts</td>
+                        <td class="text-center">@topic.UniqueUsers</td>
+                        <td class="text-center">@topic.TotalCorrect / @topic.TotalQuestions</td>
+                        <td class="text-center">
+                            <span class="badge @(topic.AveragePercent >= 80 ? "bg-success" : topic.AveragePercent >= 50 ? "bg-warning text-dark" : "bg-danger") fs-6">
+                                @topic.AveragePercent%
+                            </span>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px; min-width: 120px;">
+                                <div class="progress-bar @(topic.AveragePercent >= 80 ? "bg-success" : topic.AveragePercent >= 50 ? "bg-warning" : "bg-danger")"
+                                     role="progressbar" style="width: @topic.AveragePercent%">
+                                    @topic.AveragePercent%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h4 class="mt-4 mb-3">👥 Brugere</h4>
+
+@if (Model.Users.Count == 0)
+{
+    <div class="alert alert-info">Ingen brugere fundet.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Bruger</th>
+                    <th>Visningsnavn</th>
+                    <th class="text-center">Quizzer</th>
+                    <th class="text-center">Rigtige</th>
+                    <th class="text-center">Gennemsnit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr data-bs-toggle="collapse" data-bs-target="#details-@user.UserId.GetHashCode()" style="cursor:pointer;">
+                        <td><strong>@user.UserName</strong></td>
+                        <td>@user.DisplayName</td>
+                        <td class="text-center">@user.TotalQuizzes</td>
+                        <td class="text-center">@user.TotalScore / @user.TotalQuestions</td>
+                        <td class="text-center">
+                            @if (user.TotalQuizzes > 0)
+                            {
+                                <span class="badge @(user.AveragePercent >= 80 ? "bg-success" : user.AveragePercent >= 50 ? "bg-warning text-dark" : "bg-danger") fs-6">
+                                    @user.AveragePercent%
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">—</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="p-0 border-0">
+                            <div class="collapse" id="details-@user.UserId.GetHashCode()">
+                                @if (user.Results.Count == 0)
+                                {
+                                    <div class="p-3 text-muted">Ingen resultater endnu.</div>
+                                }
+                                else
+                                {
+                                    <table class="table table-sm table-striped mb-0 ms-4" style="max-width:90%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Opgavesæt</th>
+                                                <th class="text-center">Score</th>
+                                                <th class="text-center">Procent</th>
+                                                <th>Tidspunkt</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var r in user.Results)
+                                            {
+                                                var pct = r.TotalQuestions > 0 ? (int)Math.Round(100.0 * r.Score / r.TotalQuestions) : 0;
+                                                <tr>
+                                                    <td>@r.ExerciseSetTitle</td>
+                                                    <td class="text-center">@r.Score / @r.TotalQuestions</td>
+                                                    <td class="text-center">@pct%</td>
+                                                    <td>@r.CompletedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

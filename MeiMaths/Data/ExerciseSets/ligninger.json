@@ -1,0 +1,98 @@
+{
+  "id": "ligninger",
+  "category": "Tal og algebra",
+  "title": "Ligninger",
+  "description": "Løs ligninger med én ubekendt og ligningssystemer med to ubekendte",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Hvad er en ligning?",
+      "content": "En ligning er et matematisk udtryk hvor to sider er lige store.<br><br>For eksempel: <strong>2x + 3 = 7</strong><br><br>M\u00e5let er at finde v\u00e6rdien af den ubekendte (x) s\u00e5 begge sider bliver ens.<br><br><strong>Grundregel:</strong> Du m\u00e5 g\u00f8re det samme p\u00e5 begge sider af lighedstegnet \u2014 l\u00e6gge til, tr\u00e6kke fra, gange eller dividere.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "L\u00f8s: x + 5 = 12",
+      "correctAnswer": "7",
+      "hint": "Tr\u00e6k 5 fra begge sider: x = 12 \u2212 5"
+    },
+    {
+      "id": 3,
+      "type": "free-text",
+      "text": "L\u00f8s: 3x = 18",
+      "correctAnswer": "6",
+      "hint": "Divider begge sider med 3: x = 18 \u00f7 3"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "L\u00f8s: 2x + 4 = 14. Hvad er x?",
+      "options": [ "3", "4", "5", "7" ],
+      "correctAnswer": "5",
+      "hint": "F\u00f8rst: 2x = 14 \u2212 4 = 10. Derefter: x = 10 \u00f7 2"
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "L\u00f8s: 5x \u2212 3 = 2x + 9",
+      "correctAnswer": "4",
+      "hint": "Flyt x-led til venstre: 5x \u2212 2x = 9 + 3 \u2192 3x = 12 \u2192 x = ?"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "L\u00f8s: 4(x + 2) = 20. Hvad er x?",
+      "options": [ "2", "3", "4", "5" ],
+      "correctAnswer": "3",
+      "hint": "Gang ind i parentesen: 4x + 8 = 20 \u2192 4x = 12 \u2192 x = ?"
+    },
+    {
+      "id": 7,
+      "type": "info",
+      "text": "Ligningssystemer \u2014 to ligninger, to ubekendte",
+      "content": "Nogle gange har vi <strong>to ubekendte</strong> (x og y) og <strong>to ligninger</strong>.<br><br>Eksempel:<br><code>x + y = 10</code><br><code>x \u2212 y = 4</code><br><br><strong>Metoder:</strong><br>\u2022 <strong>Additions-metoden:</strong> L\u00e6g ligningerne sammen (eller tr\u00e6k fra) for at eliminere \u00e9n variabel.<br>\u2022 <strong>Substitutions-metoden:</strong> Isol\u00e9r \u00e9n variabel i den ene ligning og inds\u00e6t i den anden.<br><br>I eksemplet ovenfor: L\u00e6g de to ligninger sammen \u2192 2x = 14 \u2192 x = 7. Derefter y = 10 \u2212 7 = 3.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 8,
+      "type": "free-text",
+      "text": "L\u00f8s ligningssystemet:\nx + y = 10\nx \u2212 y = 4\n\nHvad er x?",
+      "correctAnswer": "7",
+      "hint": "L\u00e6g de to ligninger sammen: (x + y) + (x \u2212 y) = 10 + 4 \u2192 2x = 14"
+    },
+    {
+      "id": 9,
+      "type": "free-text",
+      "text": "Fra forrige opgave:\nx + y = 10\nx \u2212 y = 4\n\nHvad er y?",
+      "correctAnswer": "3",
+      "hint": "Vi fandt x = 7. Inds\u00e6t i f\u00f8rste ligning: 7 + y = 10"
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "text": "L\u00f8s ligningssystemet:\n2x + y = 11\nx \u2212 y = 1\n\nHvad er x?",
+      "options": [ "2", "3", "4", "5" ],
+      "correctAnswer": "4",
+      "hint": "L\u00e6g ligningerne sammen: 3x = 12 \u2192 x = ?"
+    },
+    {
+      "id": 11,
+      "type": "free-text",
+      "text": "Fra forrige opgave:\n2x + y = 11\nx \u2212 y = 1\n\nHvad er y?",
+      "correctAnswer": "3",
+      "hint": "x = 4. Inds\u00e6t i anden ligning: 4 \u2212 y = 1 \u2192 y = ?"
+    },
+    {
+      "id": 12,
+      "type": "multiple-choice",
+      "text": "L\u00f8s:\n3x + 2y = 16\nx + 2y = 8\n\nHvad er x?",
+      "options": [ "2", "3", "4", "6" ],
+      "correctAnswer": "4",
+      "hint": "Tr\u00e6k anden ligning fra f\u00f8rste: (3x + 2y) \u2212 (x + 2y) = 16 \u2212 8 \u2192 2x = 8"
+    }
+  ]
+}

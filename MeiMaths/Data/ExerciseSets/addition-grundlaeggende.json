@@ -1,0 +1,54 @@
+{
+  "id": "addition-grundlaeggende",
+  "category": "Tal og algebra",
+  "title": "Addition",
+  "description": "Øv dig i simple additionsopgaver",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "Addition",
+      "content": "Addition betyder at l\u00e6gge tal sammen.<br><br><strong>Eksempel:</strong> 8 + 5 = 13<br><br><strong>Tricks:</strong><br>\u2022 Del store tal op i mindre dele: 15 + 27 = 15 + 25 + 2 = 42<br>\u2022 Rund op til n\u00e6rmeste tier og tr\u00e6k fra: 99 + 47 = 100 + 47 \u2212 1 = 146",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "text": "Hvad er 8 + 5?",
+      "options": [ "11", "12", "13", "14" ],
+      "correctAnswer": "13",
+      "hint": "T\u00e6l 5 videre fra 8: 9, 10, 11, 12, 13"
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er 15 + 27?",
+      "correctAnswer": "42",
+      "hint": "Del opgaven op: 15 + 25 = 40, og s\u00e5 + 2"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er 34 + 18?",
+      "options": [ "42", "48", "52", "56" ],
+      "correctAnswer": "52",
+      "hint": "34 + 18 = 34 + 20 \u2212 2"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "Hvad er 99 + 47?",
+      "correctAnswer": "146",
+      "hint": "99 er n\u00e6sten 100. S\u00e5 100 + 47 = 147, tr\u00e6k 1 fra"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Hvad er 250 + 175?",
+      "options": [ "375", "400", "425", "450" ],
+      "correctAnswer": "425",
+      "hint": "250 + 175 = 250 + 150 + 25"
+    }
+  ]
+}

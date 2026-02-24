@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  meimaths:
+    image: meimaths:latest
+    build:
+      context: ..
+      dockerfile: MeiMaths/Dockerfile
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    volumes:
+      - meimaths-data:/app/data
+
+volumes:
+  meimaths-data:

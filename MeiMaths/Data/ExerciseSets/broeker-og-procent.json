@@ -1,0 +1,53 @@
+{
+  "id": "broeker-og-procent",
+  "category": "Tal og algebra",
+  "title": "Br\u00f8ker, decimaltal og procent",
+  "description": "\u00d8v dig i at regne med br\u00f8ker, decimaltal og procent",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Br\u00f8ker, decimaltal og procent",
+      "content": "Br\u00f8ker, decimaltal og procent er tre m\u00e5der at skrive det samme tal p\u00e5:<br><br><strong>\u00bd = 0,5 = 50%</strong><br><strong>\u00bc = 0,25 = 25%</strong><br><strong>\u00be = 0,75 = 75%</strong><br><br>Omregning:<br>\u2022 Br\u00f8k \u2192 decimal: divider t\u00e6ller med n\u00e6vner<br>\u2022 Decimal \u2192 procent: gang med 100<br>\u2022 Procent \u2192 br\u00f8k: divider med 100, fork\u00f8rt",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er \u00bd + \u00bc? (angiv som decimaltal)",
+      "correctAnswer": "0.75",
+      "hint": "\u00bd = 2/4, s\u00e5 2/4 + 1/4 = 3/4 = 0,75"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er 25% af 200?",
+      "options": ["25", "50", "75", "100"],
+      "correctAnswer": "50",
+      "hint": "25% = 0,25. Gange: 0,25 \u00d7 200"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "Omregn 3/5 til procent.",
+      "correctAnswer": "60",
+      "hint": "3 \u00f7 5 = 0,6. Gange med 100 = ?"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Hvad er 2/3 + 1/6?",
+      "options": ["3/6", "5/6", "3/9", "1/2"],
+      "correctAnswer": "5/6",
+      "hint": "Find f\u00e6lles n\u00e6vner: 2/3 = 4/6. S\u00e5 4/6 + 1/6 = ?"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "En vare koster 400 kr. Den er sat ned med 15%. Hvad er den nye pris?",
+      "correctAnswer": "340",
+      "hint": "15% af 400 = 60. Ny pris = 400 \u2212 60"
+    }
+  ]
+}

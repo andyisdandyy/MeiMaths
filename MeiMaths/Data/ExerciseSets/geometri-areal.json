@@ -1,0 +1,61 @@
+{
+  "id": "geometri-areal",
+  "category": "Geometri",
+  "title": "Areal og omkreds",
+  "description": "\u00d8v dig i at beregne areal og omkreds af trekanter, firkanter og cirkler",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Formler for areal og omkreds",
+      "content": "<strong>Rektangel:</strong><br>\u2022 Areal = l\u00e6ngde \u00d7 bredde<br>\u2022 Omkreds = 2 \u00d7 (l\u00e6ngde + bredde)<br><br><strong>Trekant:</strong><br>\u2022 Areal = \u00bd \u00d7 grundlinje \u00d7 h\u00f8jde<br><br><strong>Cirkel:</strong><br>\u2022 Areal = \u03c0 \u00d7 r\u00b2<br>\u2022 Omkreds = 2 \u00d7 \u03c0 \u00d7 r<br><br>Husk: \u03c0 \u2248 3,14",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Et rektangel har l\u00e6ngde 8 cm og bredde 5 cm. Hvad er arealet i cm\u00b2?",
+      "correctAnswer": "40",
+      "hint": "Areal = l\u00e6ngde \u00d7 bredde = 8 \u00d7 5"
+    },
+    {
+      "id": 3,
+      "type": "free-text",
+      "text": "Et rektangel har l\u00e6ngde 8 cm og bredde 5 cm. Hvad er omkredsen i cm?",
+      "correctAnswer": "26",
+      "hint": "Omkreds = 2 \u00d7 (l\u00e6ngde + bredde) = 2 \u00d7 (8 + 5)"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "En trekant har grundlinje 10 cm og h\u00f8jde 6 cm. Hvad er arealet?",
+      "options": ["30 cm\u00b2", "60 cm\u00b2", "16 cm\u00b2", "20 cm\u00b2"],
+      "correctAnswer": "30 cm\u00b2",
+      "hint": "Areal = \u00bd \u00d7 grundlinje \u00d7 h\u00f8jde = \u00bd \u00d7 10 \u00d7 6"
+    },
+    {
+      "id": 5,
+      "type": "info",
+      "text": "Rumfang",
+      "content": "<strong>Kasse (rektangul\u00e6r boks):</strong><br>\u2022 Rumfang = l\u00e6ngde \u00d7 bredde \u00d7 h\u00f8jde<br><br><strong>Cylinder:</strong><br>\u2022 Rumfang = \u03c0 \u00d7 r\u00b2 \u00d7 h\u00f8jde<br><br><strong>Kugle:</strong><br>\u2022 Rumfang = 4/3 \u00d7 \u03c0 \u00d7 r\u00b3",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "En kasse er 4 cm lang, 3 cm bred og 5 cm h\u00f8j. Hvad er rumfanget i cm\u00b3?",
+      "correctAnswer": "60",
+      "hint": "Rumfang = l \u00d7 b \u00d7 h = 4 \u00d7 3 \u00d7 5"
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "text": "En cirkel har radius 7 cm. Hvad er arealet? (afrund til hele tal, \u03c0 \u2248 3,14)",
+      "options": ["44 cm\u00b2", "154 cm\u00b2", "22 cm\u00b2", "308 cm\u00b2"],
+      "correctAnswer": "154 cm\u00b2",
+      "hint": "Areal = \u03c0 \u00d7 r\u00b2 = 3,14 \u00d7 49 \u2248 154"
+    }
+  ]
+}

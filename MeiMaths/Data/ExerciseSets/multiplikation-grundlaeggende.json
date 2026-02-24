@@ -1,0 +1,54 @@
+{
+  "id": "multiplikation-grundlaeggende",
+  "category": "Tal og algebra",
+  "title": "Multiplikation",
+  "description": "Øv dig i multiplikationstabellerne",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "Multiplikation",
+      "content": "Multiplikation er en hurtig m\u00e5de at l\u00e6gge det samme tal sammen mange gange.<br><br><strong>Eksempel:</strong> 7 \u00d7 6 = 42 (svarer til 7 + 7 + 7 + 7 + 7 + 7)<br><br><strong>Tricks:</strong><br>\u2022 9-tabellen: 9 \u00d7 n = 10 \u00d7 n \u2212 n<br>\u2022 Del st\u00f8rre tal op: 12 \u00d7 5 = 10 \u00d7 5 + 2 \u00d7 5 = 60",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "text": "Hvad er 7 \u00d7 6?",
+      "options": [ "36", "42", "48", "54" ],
+      "correctAnswer": "42",
+      "hint": "7 \u00d7 6 = 7 \u00d7 5 + 7 = 35 + 7"
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er 9 \u00d7 8?",
+      "correctAnswer": "72",
+      "hint": "9 \u00d7 8 = 10 \u00d7 8 \u2212 8 = 80 \u2212 8"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er 12 \u00d7 5?",
+      "options": [ "50", "55", "60", "65" ],
+      "correctAnswer": "60",
+      "hint": "12 \u00d7 5 = 10 \u00d7 5 + 2 \u00d7 5"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "Hvad er 11 \u00d7 11?",
+      "correctAnswer": "121",
+      "hint": "Pr\u00f8v 11 \u00d7 10 + 11 = 110 + 11"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Hvad er 15 \u00d7 4?",
+      "options": [ "45", "50", "55", "60" ],
+      "correctAnswer": "60",
+      "hint": "15 \u00d7 4 = 15 \u00d7 2 \u00d7 2 = 30 \u00d7 2"
+    }
+  ]
+}

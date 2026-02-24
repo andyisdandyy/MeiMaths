@@ -1,0 +1,44 @@
+@page
+@model MeiMaths.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Opret bruger";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4">📝 Opret bruger</h3>
+
+                @if (Model.ErrorMessage is not null)
+                {
+                    <div class="alert alert-danger">@Model.ErrorMessage</div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Brugernavn</label>
+                        <input asp-for="Username" class="form-control form-control-lg" autofocus />
+                    </div>
+                    <div class="mb-3">
+                        <label for="DisplayName" class="form-label">Visningsnavn (valgfrit)</label>
+                        <input asp-for="DisplayName" class="form-control form-control-lg" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Adgangskode (min. 4 tegn)</label>
+                        <input asp-for="Password" type="password" class="form-control form-control-lg" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="PasswordConfirm" class="form-label">Gentag adgangskode</label>
+                        <input asp-for="PasswordConfirm" type="password" class="form-control form-control-lg" />
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100">Opret bruger</button>
+                </form>
+
+                <p class="text-center mt-3 mb-0">
+                    Har du allerede en konto? <a asp-page="/Account/Login">Log ind</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

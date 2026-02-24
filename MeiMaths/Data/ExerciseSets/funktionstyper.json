@@ -1,0 +1,106 @@
+{
+  "id": "funktionstyper",
+  "category": "Funktioner",
+  "title": "Funktionstyper",
+  "description": "\u00d8v dig i at genkende og arbejde med parabler, eksponentielle funktioner, trigonometriske funktioner og mere",
+  "questions": [
+    {
+      "id": 0,
+      "type": "info",
+      "text": "Funktionstyper",
+      "content": "Der findes mange typer funktioner:<br><br><strong>Line\u00e6r:</strong> f(x) = ax + b \u2014 ret linje<br><strong>Andengradsfunktion:</strong> f(x) = x\u00b2 \u2014 parabel (U-form)<br><strong>Eksponentiel:</strong> f(x) = e<sup>x</sup> \u2014 vokser meget hurtigt<br><strong>Sinus/cosinus:</strong> f(x) = sin(x) \u2014 b\u00f8lgeform, gentager sig<br><br>Grafen fort\u00e6ller dig hvilken type funktion det er!",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 1,
+      "type": "multiple-choice",
+      "text": "Hvilken type funktion er vist p\u00e5 grafen?",
+      "graph": {
+        "functions": [
+          { "expression": "x^2", "color": "#0d6efd", "label": "f(x) = x\u00b2" }
+        ],
+        "xMin": -4, "xMax": 4, "yMin": -2, "yMax": 10
+      },
+      "options": [ "Line\u00e6r", "Parabel (andengradsfunktion)", "Eksponentiel", "Sinus" ],
+      "correctAnswer": "Parabel (andengradsfunktion)",
+      "hint": "Grafen har form som et U \u2014 det er kendetegnende for en andengradsfunktion f(x) = x\u00b2."
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er toppunktet (minimum) for den viste parabel? Angiv y-v\u00e6rdien.",
+      "graph": {
+        "functions": [
+          { "expression": "x^2-4", "color": "#dc3545", "label": "f(x) = x\u00b2 \u2212 4" }
+        ],
+        "xMin": -5, "xMax": 5, "yMin": -6, "yMax": 10
+      },
+      "correctAnswer": "-4",
+      "hint": "Toppunktet for f(x) = x\u00b2 \u2212 4 er n\u00e5r x = 0: f(0) = 0 \u2212 4 = ?"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvilken funktion vokser hurtigst for store v\u00e6rdier af x?",
+      "graph": {
+        "functions": [
+          { "expression": "x", "color": "#6c757d", "label": "f(x) = x" },
+          { "expression": "x^2", "color": "#0d6efd", "label": "g(x) = x\u00b2" },
+          { "expression": "exp(0.5x)", "color": "#dc3545", "label": "h(x) = e^(0,5x)" }
+        ],
+        "xMin": -2, "xMax": 6, "yMin": -2, "yMax": 20
+      },
+      "options": [ "f(x) = x", "g(x) = x\u00b2", "h(x) = e^(0,5x)" ],
+      "correctAnswer": "h(x) = e^(0,5x)",
+      "hint": "Eksponentielle funktioner vokser hurtigere end polynomier for store x-v\u00e6rdier."
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "Hvad er perioden for funktionen sin(x)?",
+      "graph": {
+        "functions": [
+          { "expression": "sin(x)", "color": "#198754", "label": "f(x) = sin(x)" }
+        ],
+        "xMin": -8, "xMax": 8, "yMin": -2, "yMax": 2
+      },
+      "options": [ "\u03c0", "2\u03c0", "3\u03c0", "4\u03c0" ],
+      "correctAnswer": "2\u03c0",
+      "hint": "Kig p\u00e5 grafen: hvor langt skal du g\u00e5 langs x-aksen f\u00f8r m\u00f8nstret gentager sig? Fra 0 til ca. 6,28."
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "Hvad er v\u00e6rdien af cos(0)?",
+      "graph": {
+        "functions": [
+          { "expression": "cos(x)", "color": "#6f42c1", "label": "f(x) = cos(x)" }
+        ],
+        "xMin": -8, "xMax": 8, "yMin": -2, "yMax": 2
+      },
+      "correctAnswer": "1",
+      "hint": "Afl\u00e6s grafen ved x = 0. Hvor h\u00f8j er cos-kurven der?"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "Hvad sker der med grafen n\u00e5r vi g\u00e5r fra f(x) = x\u00b2 til g(x) = \u2212x\u00b2?",
+      "graph": {
+        "functions": [
+          { "expression": "x^2", "color": "#0d6efd", "label": "f(x) = x\u00b2" },
+          { "expression": "-x^2", "color": "#dc3545", "label": "g(x) = \u2212x\u00b2" }
+        ],
+        "xMin": -4, "xMax": 4, "yMin": -10, "yMax": 10
+      },
+      "options": [
+        "Den spejles i x-aksen",
+        "Den rykker opad",
+        "Den bliver smallere",
+        "Den roterer 90\u00b0"
+      ],
+      "correctAnswer": "Den spejles i x-aksen",
+      "hint": "Sammenlign de to grafer: den ene \u00e5bner opad, den anden nedad. Det er en spejling."
+    }
+  ]
+}

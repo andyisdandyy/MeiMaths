@@ -1,0 +1,53 @@
+{
+  "id": "maalestoksforhold",
+  "category": "Geometri",
+  "title": "M\u00e5lestoksforhold",
+  "description": "\u00d8v dig i m\u00e5lestoksforhold og ligedannede figurer",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "M\u00e5lestoksforhold og ligedannede figurer",
+      "content": "<strong>M\u00e5lestok</strong> angiver forholdet mellem en tegning og virkeligheden.<br><br>\u2022 1:100 betyder at 1 cm p\u00e5 tegningen = 100 cm i virkeligheden<br>\u2022 1:50000 p\u00e5 et kort: 1 cm = 50000 cm = 500 m = 0,5 km<br><br><strong>Ligedannede figurer</strong> har samme form men forskellig st\u00f8rrelse. Alle sider er skaleret med samme faktor.<br><br><strong>Eksempel:</strong> En trekant med sider 3, 4, 5 er ligedannet med en trekant med sider 6, 8, 10 (faktor 2).",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Et kort har m\u00e5lestok 1:50000. En str\u00e6kning er 3 cm p\u00e5 kortet. Hvor lang er den i virkeligheden i km?",
+      "correctAnswer": "1.5",
+      "hint": "3 \u00d7 50000 = 150000 cm = 1500 m = ? km"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "En plantegning har m\u00e5lestok 1:100. Et rum er 5 cm langt p\u00e5 tegningen. Hvor langt er rummet i virkeligheden?",
+      "options": ["50 cm", "5 m", "50 m", "500 m"],
+      "correctAnswer": "5 m",
+      "hint": "5 cm \u00d7 100 = 500 cm = ? m"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "To ligedannede trekanter har en skaleringsfaktor p\u00e5 3. Den lille trekant har en side p\u00e5 4 cm. Hvor lang er den tilsvarende side i den store trekant?",
+      "correctAnswer": "12",
+      "hint": "4 \u00d7 3 = ?"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Et hus er 12 m h\u00f8jt. P\u00e5 en tegning med m\u00e5lestok 1:200 er huset:",
+      "options": ["0,6 cm", "6 cm", "60 cm", "1,2 cm"],
+      "correctAnswer": "6 cm",
+      "hint": "12 m = 1200 cm. 1200 \u00f7 200 = ?"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "Et rektangel med sider 6 cm og 10 cm er ligedannet med et rektangel hvor den korte side er 9 cm. Hvad er den lange side?",
+      "correctAnswer": "15",
+      "hint": "Skaleringsfaktor = 9 \u00f7 6 = 1,5. Den lange side = 10 \u00d7 1,5 = ?"
+    }
+  ]
+}

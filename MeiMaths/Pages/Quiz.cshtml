@@ -1,0 +1,570 @@
+@page "{id}"
+@model QuizModel
+@{
+    ViewData["Title"] = Model.ExerciseSet!.Title;
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+
+        <div class="mb-4">
+            <a asp-page="/Index" class="text-decoration-none">← Tilbage til opgavesæt</a>
+        </div>
+
+        <h2 class="mb-4">@Model.ExerciseSet.Title</h2>
+
+        <!-- Progress -->
+        <div class="mb-4">
+            <div class="d-flex justify-content-between mb-1">
+                <span id="progress-text">Opgave 1 af @Model.ExerciseSet.Questions.Count</span>
+                <span id="score-text">Score: 0 / 0</span>
+            </div>
+            <div class="progress" style="height: 8px;">
+                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%; transition: width 0.3s;"></div>
+            </div>
+        </div>
+
+        <!-- Quiz area -->
+        <div id="quiz-area">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h4 id="question-text" class="card-title mb-4"></h4>
+                    <div id="graph-container" style="display:none;" class="mb-4 text-center">
+                        <canvas id="graph-canvas" width="500" height="400" class="border rounded" style="max-width:100%;"></canvas>
+                    </div>
+                    <div id="info-content" style="display:none;" class="mt-2 fs-5 lh-lg"></div>
+                    <div id="options-container"></div>
+                    <div id="text-input-container" style="display:none;">
+                        <input type="text" id="textAnswer" class="form-control form-control-lg" placeholder="Skriv dit svar her..." autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="hint-area" class="alert alert-info mt-3" style="display:none;">
+                <strong>💡 Hint:</strong> <span id="hint-text"></span>
+            </div>
+
+            <div id="feedback-area" class="mt-3" style="display:none;"></div>
+
+            <div class="mt-3 d-flex gap-2">
+                <button id="hint-btn" class="btn btn-outline-info" onclick="showHint()">💡 Vis hint</button>
+                <button id="check-btn" class="btn btn-primary" onclick="checkAnswer()">Tjek svar</button>
+                <button id="next-btn" class="btn btn-success" onclick="nextQuestion()" style="display:none;">Næste opgave →</button>
+            </div>
+        </div>
+
+        <!-- Results area -->
+        <div id="results-area" style="display:none;">
+            <div class="card shadow-sm text-center">
+                <div class="card-body p-5">
+                    <h2 id="results-emoji" class="display-1 mb-3"></h2>
+                    <h3 id="results-title" class="mb-3"></h3>
+                    <p id="results-score" class="lead mb-4"></p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-primary btn-lg" onclick="restartQuiz()">🔄 Prøv igen</button>
+                        <a asp-page="/Index" class="btn btn-outline-secondary btn-lg">← Vælg andet sæt</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.AntiForgeryToken()
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    const setId = '@Model.ExerciseSet.Id';
+    const questions = @Html.Raw(Json.Serialize(Model.ExerciseSet.Questions.Select(q => new {
+        q.Id,
+        q.Type,
+        q.Text,
+        q.Options,
+        q.Hint,
+        q.Graph,
+        q.Content
+    })));
+    const totalQuestions = questions.length;
+
+    let currentIndex = 0;
+    let score = 0;
+    let answered = 0;
+    let isAnswered = false;
+
+    document.addEventListener('DOMContentLoaded', () => renderQuestion());
+
+    function renderQuestion() {
+        const q = questions[currentIndex];
+        isAnswered = false;
+
+        document.getElementById('progress-text').textContent = `Opgave ${currentIndex + 1} af ${totalQuestions}`;
+        document.getElementById('progress-bar').style.width = `${((currentIndex) / totalQuestions) * 100}%`;
+
+        document.getElementById('question-text').textContent = q.text;
+
+        // Show/hide graph
+        const graphContainer = document.getElementById('graph-container');
+        if (q.graph) {
+            graphContainer.style.display = '';
+            drawGraph('graph-canvas', q.graph);
+        } else {
+            graphContainer.style.display = 'none';
+        }
+
+        // Reset UI
+        document.getElementById('hint-area').style.display = 'none';
+        document.getElementById('feedback-area').style.display = 'none';
+        document.getElementById('feedback-area').innerHTML = '';
+        document.getElementById('check-btn').style.display = '';
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('hint-btn').style.display = '';
+        document.getElementById('hint-btn').disabled = false;
+        document.getElementById('info-content').style.display = 'none';
+        const existingFinish = document.getElementById('finish-btn');
+        if (existingFinish) existingFinish.remove();
+
+        const card = document.querySelector('#quiz-area .card');
+        const optionsContainer = document.getElementById('options-container');
+        const textContainer = document.getElementById('text-input-container');
+
+        if (q.type === 'info') {
+            card.classList.add('border-info');
+            optionsContainer.style.display = 'none';
+            textContainer.style.display = 'none';
+            document.getElementById('question-text').innerHTML = '\ud83d\udcd6 ' + escapeHtml(q.text);
+            const infoDiv = document.getElementById('info-content');
+            infoDiv.style.display = '';
+            infoDiv.innerHTML = q.content || '';
+            document.getElementById('check-btn').style.display = 'none';
+            document.getElementById('hint-btn').style.display = 'none';
+            if (currentIndex < totalQuestions - 1) {
+                document.getElementById('next-btn').style.display = '';
+            } else {
+                const fb = document.createElement('button');
+                fb.id = 'finish-btn'; fb.className = 'btn btn-success'; fb.textContent = 'Se resultat \u2192';
+                fb.onclick = showResults;
+                document.getElementById('next-btn').parentNode.appendChild(fb);
+            }
+        } else if (q.type === 'multiple-choice') {
+            card.classList.remove('border-info');
+            optionsContainer.style.display = '';
+            textContainer.style.display = 'none';
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, i) => {
+                const id = `option-${i}`;
+                const div = document.createElement('div');
+                div.className = 'form-check quiz-option mb-2 p-3 border rounded';
+                div.innerHTML = `
+                    <input class="form-check-input" type="radio" name="answer" id="${id}" value="${escapeHtml(opt)}">
+                    <label class="form-check-label w-100" for="${id}">${escapeHtml(opt)}</label>
+                `;
+                div.addEventListener('click', (e) => {
+                    if (isAnswered) return;
+                    document.getElementById(id).checked = true;
+                });
+                optionsContainer.appendChild(div);
+            });
+        } else {
+            card.classList.remove('border-info');
+            optionsContainer.style.display = 'none';
+            textContainer.style.display = '';
+            const input = document.getElementById('textAnswer');
+            input.disabled = false;
+            input.value = '';
+            input.focus();
+        }
+    }
+
+    async function checkAnswer() {
+        if (isAnswered) return;
+
+        const q = questions[currentIndex];
+        let userAnswer = '';
+
+        if (q.type === 'multiple-choice') {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                showFeedback('Vælg venligst et svar.', 'warning');
+                return;
+            }
+            userAnswer = selected.value;
+        } else {
+            userAnswer = document.getElementById('textAnswer').value.trim();
+            if (!userAnswer) {
+                showFeedback('Skriv venligst dit svar.', 'warning');
+                return;
+            }
+        }
+
+        const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+
+        let result;
+        try {
+            const response = await fetch('?handler=CheckAnswer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': tokenInput ? tokenInput.value : ''
+                },
+                body: JSON.stringify({ setId: setId, questionId: q.id, answer: userAnswer })
+            });
+
+            if (!response.ok) {
+                showFeedback('Der opstod en fejl. Prøv igen.', 'danger');
+                return;
+            }
+
+            result = await response.json();
+        } catch (err) {
+            showFeedback('Der opstod en fejl. Prøv igen.', 'danger');
+            return;
+        }
+
+        isAnswered = true;
+        answered++;
+
+        if (result.isCorrect) {
+            score++;
+            showFeedback('✅ Rigtigt! Godt klaret!', 'success');
+        } else {
+            showFeedback(`❌ Forkert. Det rigtige svar er: <strong>${escapeHtml(result.correctAnswer)}</strong>`, 'danger');
+        }
+
+        // Highlight correct option for multiple choice
+        if (q.type === 'multiple-choice') {
+            document.querySelectorAll('.quiz-option').forEach(div => {
+                const radio = div.querySelector('input[type="radio"]');
+                radio.disabled = true;
+                if (radio.value === result.correctAnswer) {
+                    div.classList.add('border-success', 'bg-success-subtle');
+                } else if (radio.checked && !result.isCorrect) {
+                    div.classList.add('border-danger', 'bg-danger-subtle');
+                }
+            });
+        } else {
+            document.getElementById('textAnswer').disabled = true;
+        }
+
+        document.getElementById('score-text').textContent = `Score: ${score} / ${answered}`;
+        document.getElementById('check-btn').style.display = 'none';
+        document.getElementById('hint-btn').style.display = 'none';
+
+        if (currentIndex < totalQuestions - 1) {
+            document.getElementById('next-btn').style.display = '';
+        } else {
+            const finishBtn = document.createElement('button');
+            finishBtn.id = 'finish-btn';
+            finishBtn.className = 'btn btn-success';
+            finishBtn.textContent = 'Se resultat →';
+            finishBtn.onclick = showResults;
+            document.getElementById('next-btn').parentNode.appendChild(finishBtn);
+        }
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        renderQuestion();
+    }
+
+    function showHint() {
+        const q = questions[currentIndex];
+        document.getElementById('hint-text').textContent = q.hint;
+        document.getElementById('hint-area').style.display = '';
+        document.getElementById('hint-btn').disabled = true;
+    }
+
+    function showResults() {
+        document.getElementById('quiz-area').style.display = 'none';
+        document.getElementById('results-area').style.display = '';
+        document.getElementById('progress-bar').style.width = '100%';
+
+        const pct = answered > 0 ? Math.round((score / answered) * 100) : 100;
+
+        let emoji, title;
+        if (pct === 100) { emoji = '🏆'; title = 'Perfekt!'; }
+        else if (pct >= 80) { emoji = '🌟'; title = 'Fantastisk!'; }
+        else if (pct >= 60) { emoji = '👍'; title = 'Godt gået!'; }
+        else if (pct >= 40) { emoji = '💪'; title = 'Bliv ved med at øve!'; }
+        else { emoji = '📚'; title = 'Øv dig lidt mere!'; }
+
+        document.getElementById('results-emoji').textContent = emoji;
+        document.getElementById('results-title').textContent = title;
+        document.getElementById('results-score').textContent = `Du fik ${score} ud af ${answered} rigtige (${pct}%)`;
+
+        // Save result if logged in
+        const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+        fetch('?handler=SaveResult', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': tokenInput ? tokenInput.value : ''
+            },
+            body: JSON.stringify({
+                setId: setId,
+                setTitle: '@Html.Raw(Model.ExerciseSet.Title.Replace("'", "\\'"))',
+                score: score,
+                totalQuestions: answered
+            })
+        }).catch(() => {});
+    }
+
+    function restartQuiz() {
+        currentIndex = 0;
+        score = 0;
+        answered = 0;
+        isAnswered = false;
+
+        document.getElementById('quiz-area').style.display = '';
+        document.getElementById('results-area').style.display = 'none';
+        document.getElementById('score-text').textContent = 'Score: 0 / 0';
+
+        renderQuestion();
+    }
+
+    function showFeedback(message, type) {
+        const area = document.getElementById('feedback-area');
+        area.style.display = '';
+        area.className = `mt-3 alert alert-${type}`;
+        area.innerHTML = message;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // ── Expression parser (supports sin, cos, tan, sqrt, exp, log, pi, ^) ──
+    function createFunction(expr) {
+        let js = expr.replace(/\s/g, '');
+        js = js.replace(/([\d.])(sin|cos|tan|sqrt|abs|log|ln|exp)\(/g, '$1*$2(');
+        js = js.replace(/(x)(sin|cos|tan|sqrt|abs|log|ln|exp)\(/g, '$1*$2(');
+        js = js.replace(/sin\(/g, 'Math.sin(');
+        js = js.replace(/cos\(/g, 'Math.cos(');
+        js = js.replace(/tan\(/g, 'Math.tan(');
+        js = js.replace(/sqrt\(/g, 'Math.sqrt(');
+        js = js.replace(/abs\(/g, 'Math.abs(');
+        js = js.replace(/log\(/g, 'Math.log(');
+        js = js.replace(/ln\(/g, 'Math.log(');
+        js = js.replace(/exp\(/g, 'Math.exp(');
+        js = js.replace(/([\d.])pi/g, '$1*Math.PI');
+        js = js.replace(/pi/g, 'Math.PI');
+        js = js.replace(/\^/g, '**');
+        js = js.replace(/([\d.])(x)/g, '$1*$2');
+        js = js.replace(/([\d.])(\()/g, '$1*$2');
+        js = js.replace(/(\))([\d.xM])/g, '$1*$2');
+        js = js.replace(/(\))(\()/g, '$1*$2');
+        js = js.replace(/(x)(\()/g, '$1*$2');
+        return new Function('x', `return (${js});`);
+    }
+
+    // ── Coordinate system + function plotter ──
+    function drawGraph(canvasId, cfg) {
+        if (cfg.triangle) { drawTriangle(canvasId, cfg.triangle); return; }
+
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+        const { xMin, xMax, yMin, yMax } = cfg;
+        const toX = x => (x - xMin) / (xMax - xMin) * W;
+        const toY = y => H - (y - yMin) / (yMax - yMin) * H;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#fafafa';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 1;
+        for (let x = Math.ceil(xMin); x <= xMax; x++) { ctx.beginPath(); ctx.moveTo(toX(x), 0); ctx.lineTo(toX(x), H); ctx.stroke(); }
+        for (let y = Math.ceil(yMin); y <= yMax; y++) { ctx.beginPath(); ctx.moveTo(0, toY(y)); ctx.lineTo(W, toY(y)); ctx.stroke(); }
+
+        ctx.strokeStyle = '#333'; ctx.lineWidth = 2;
+        if (yMin <= 0 && yMax >= 0) { ctx.beginPath(); ctx.moveTo(0, toY(0)); ctx.lineTo(W, toY(0)); ctx.stroke(); }
+        if (xMin <= 0 && xMax >= 0) { ctx.beginPath(); ctx.moveTo(toX(0), 0); ctx.lineTo(toX(0), H); ctx.stroke(); }
+
+        ctx.fillStyle = '#666'; ctx.font = '12px sans-serif';
+        ctx.textAlign = 'center';
+        for (let x = Math.ceil(xMin); x <= xMax; x++) { if (x === 0) continue; ctx.fillText(x, toX(x), Math.min(toY(0) + 16, H - 4)); }
+        ctx.textAlign = 'right';
+        for (let y = Math.ceil(yMin); y <= yMax; y++) { if (y === 0) continue; ctx.fillText(y, Math.max(toX(0) - 4, 24), toY(y) + 4); }
+
+        (cfg.functions || []).forEach(fn => {
+            const evalFn = createFunction(fn.expression);
+            ctx.strokeStyle = fn.color || '#0d6efd'; ctx.lineWidth = 3;
+            ctx.beginPath(); let started = false;
+            const step = (xMax - xMin) / W;
+            for (let px = 0; px < W; px++) {
+                const x = xMin + px * step;
+                let y; try { y = evalFn(x); } catch { continue; }
+                const cy = toY(y);
+                if (cy < -200 || cy > H + 200 || isNaN(y) || !isFinite(y)) { started = false; continue; }
+                if (!started) { ctx.moveTo(px, cy); started = true; } else { ctx.lineTo(px, cy); }
+            }
+            ctx.stroke();
+            if (fn.label) {
+                ctx.fillStyle = fn.color || '#0d6efd'; ctx.font = 'bold 14px sans-serif'; ctx.textAlign = 'left';
+                const lx = xMax - (xMax - xMin) * 0.25;
+                let ly; try { ly = evalFn(lx); } catch { ly = 0; }
+                ctx.fillText(fn.label, toX(lx), Math.max(20, Math.min(H - 10, toY(ly) - 10)));
+            }
+        });
+    }
+
+    // ── Triangle solver (iterative — handles SSS, SAS, AAS, ASA, SSA) ──
+    function solveTriangle(tri) {
+        let a = tri.sideA, b = tri.sideB, c = tri.sideC;
+        let A = tri.angleA, B = tri.angleB, C = tri.angleC;
+        const rad = d => d * Math.PI / 180;
+        const deg = r => r * 180 / Math.PI;
+
+        for (let pass = 0; pass < 3; pass++) {
+            // Deduce third angle
+            if (A != null && B != null && C == null) C = 180 - A - B;
+            if (A != null && C != null && B == null) B = 180 - A - C;
+            if (B != null && C != null && A == null) A = 180 - B - C;
+
+            // SSS → angles via law of cosines
+            if (a != null && b != null && c != null) {
+                if (A == null) A = deg(Math.acos(Math.min(1, Math.max(-1, (b*b + c*c - a*a) / (2*b*c)))));
+                if (B == null) B = deg(Math.acos(Math.min(1, Math.max(-1, (a*a + c*c - b*b) / (2*a*c)))));
+                if (C == null) C = 180 - A - B;
+            }
+
+            // SAS → missing side via law of cosines
+            if (b != null && c != null && A != null && a == null) a = Math.sqrt(b*b + c*c - 2*b*c*Math.cos(rad(A)));
+            if (a != null && c != null && B != null && b == null) b = Math.sqrt(a*a + c*c - 2*a*c*Math.cos(rad(B)));
+            if (a != null && b != null && C != null && c == null) c = Math.sqrt(a*a + b*b - 2*a*b*Math.cos(rad(C)));
+
+            // SSA → missing angle via law of sines
+            if (c != null && C != null && a != null && A == null) { const v = a * Math.sin(rad(C)) / c; if (Math.abs(v) <= 1) A = deg(Math.asin(v)); }
+            if (c != null && C != null && b != null && B == null) { const v = b * Math.sin(rad(C)) / c; if (Math.abs(v) <= 1) B = deg(Math.asin(v)); }
+            if (a != null && A != null && b != null && B == null) { const v = b * Math.sin(rad(A)) / a; if (Math.abs(v) <= 1) B = deg(Math.asin(v)); }
+            if (a != null && A != null && c != null && C == null) { const v = c * Math.sin(rad(A)) / a; if (Math.abs(v) <= 1) C = deg(Math.asin(v)); }
+            if (b != null && B != null && a != null && A == null) { const v = a * Math.sin(rad(B)) / b; if (Math.abs(v) <= 1) A = deg(Math.asin(v)); }
+            if (b != null && B != null && c != null && C == null) { const v = c * Math.sin(rad(B)) / b; if (Math.abs(v) <= 1) C = deg(Math.asin(v)); }
+
+            // AAS/ASA → missing sides via law of sines
+            if (A != null && B != null && C != null) {
+                const sA = Math.sin(rad(A)), sB = Math.sin(rad(B)), sC = Math.sin(rad(C));
+                if (a != null && b == null && sB > 0) b = a * sB / sA;
+                if (a != null && c == null && sC > 0) c = a * sC / sA;
+                if (b != null && a == null && sA > 0) a = b * sA / sB;
+                if (b != null && c == null && sC > 0) c = b * sC / sB;
+                if (c != null && a == null && sA > 0) a = c * sA / sC;
+                if (c != null && b == null && sB > 0) b = c * sB / sC;
+            }
+        }
+        return { a, b, c, A, B, C };
+    }
+
+    // ── Triangle drawer ──
+    function drawTriangle(canvasId, triCfg) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+        const rad = d => d * Math.PI / 180;
+        const s = solveTriangle(triCfg);
+
+        const vA = [0, 0];
+        const vB = [s.c, 0];
+        const vC = [s.b * Math.cos(rad(s.A)), s.b * Math.sin(rad(s.A))];
+
+        const xs = [vA[0], vB[0], vC[0]], ys = [vA[1], vB[1], vC[1]];
+        const minX = Math.min(...xs), maxX = Math.max(...xs);
+        const minY = Math.min(...ys), maxY = Math.max(...ys);
+        const tw = maxX - minX || 1, th = maxY - minY || 1;
+        const pad = 70;
+        const scale = Math.min((W - 2 * pad) / tw, (H - 2 * pad) / th);
+        const ox = (W - tw * scale) / 2 - minX * scale;
+        const oy = (H + th * scale) / 2 + minY * scale;
+        const tx = x => x * scale + ox;
+        const ty = y => -y * scale + oy;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#fafafa'; ctx.fillRect(0, 0, W, H);
+
+        ctx.beginPath();
+        ctx.moveTo(tx(vA[0]), ty(vA[1]));
+        ctx.lineTo(tx(vB[0]), ty(vB[1]));
+        ctx.lineTo(tx(vC[0]), ty(vC[1]));
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(13,110,253,0.07)'; ctx.fill();
+        ctx.strokeStyle = '#333'; ctx.lineWidth = 2.5; ctx.stroke();
+
+        const labels = triCfg.labels || {};
+        const centroid = [(tx(vA[0]) + tx(vB[0]) + tx(vC[0])) / 3, (ty(vA[1]) + ty(vB[1]) + ty(vC[1])) / 3];
+
+        // Side labels
+        const sides = [
+            { label: labels.sideA, p1: vB, p2: vC, opp: vA, color: '#dc3545' },
+            { label: labels.sideB, p1: vA, p2: vC, opp: vB, color: '#198754' },
+            { label: labels.sideC, p1: vA, p2: vB, opp: vC, color: '#0d6efd' }
+        ];
+        ctx.font = 'bold 15px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        sides.forEach(({ label, p1, p2, opp, color }) => {
+            if (!label) return;
+            const mx = (tx(p1[0]) + tx(p2[0])) / 2, my = (ty(p1[1]) + ty(p2[1])) / 2;
+            const dx = mx - tx(opp[0]), dy = my - ty(opp[1]);
+            const len = Math.sqrt(dx * dx + dy * dy) || 1;
+            ctx.fillStyle = color;
+            ctx.fillText(label, mx + dx / len * 22, my + dy / len * 22);
+        });
+
+        // Vertex labels
+        const verts = [{ n: 'A', p: vA }, { n: 'B', p: vB }, { n: 'C', p: vC }];
+        ctx.font = 'bold 18px sans-serif'; ctx.fillStyle = '#333';
+        verts.forEach(({ n, p }) => {
+            const px = tx(p[0]), py = ty(p[1]);
+            const dx = px - centroid[0], dy = py - centroid[1];
+            const len = Math.sqrt(dx * dx + dy * dy) || 1;
+            ctx.fillText(n, px + dx / len * 22, py + dy / len * 22);
+        });
+
+        // Vertex dots
+        ctx.fillStyle = '#333';
+        verts.forEach(({ p }) => { ctx.beginPath(); ctx.arc(tx(p[0]), ty(p[1]), 4, 0, Math.PI * 2); ctx.fill(); });
+
+        // Angle markers
+        const angles = [
+            { label: labels.angleA, angle: s.A, vtx: vA, p1: vB, p2: vC },
+            { label: labels.angleB, angle: s.B, vtx: vB, p1: vA, p2: vC },
+            { label: labels.angleC, angle: s.C, vtx: vC, p1: vA, p2: vB }
+        ];
+        angles.forEach(({ label, angle, vtx, p1, p2 }) => {
+            if (!label) return;
+            const vx = tx(vtx[0]), vy = ty(vtx[1]);
+            const a1 = Math.atan2(ty(p1[1]) - vy, tx(p1[0]) - vx);
+            const a2 = Math.atan2(ty(p2[1]) - vy, tx(p2[0]) - vx);
+
+            if (Math.abs(angle - 90) < 0.5) {
+                const sz = 14;
+                const u1x = Math.cos(a1), u1y = Math.sin(a1), u2x = Math.cos(a2), u2y = Math.sin(a2);
+                ctx.beginPath();
+                ctx.moveTo(vx + u1x * sz, vy + u1y * sz);
+                ctx.lineTo(vx + u1x * sz + u2x * sz, vy + u1y * sz + u2y * sz);
+                ctx.lineTo(vx + u2x * sz, vy + u2y * sz);
+                ctx.strokeStyle = '#666'; ctx.lineWidth = 1.5; ctx.stroke();
+            } else {
+                let start = a1, end = a2, diff = end - start;
+                while (diff < 0) diff += 2 * Math.PI;
+                if (diff > Math.PI) { start = a2; diff = 2 * Math.PI - diff; }
+                ctx.beginPath(); ctx.arc(vx, vy, 28, start, start + diff);
+                ctx.strokeStyle = '#666'; ctx.lineWidth = 1.5; ctx.stroke();
+            }
+
+            let d = a2 - a1; while (d < 0) d += 2 * Math.PI; if (d > Math.PI) d = -(2 * Math.PI - d);
+            const midA = a1 + d / 2;
+            ctx.font = '13px sans-serif'; ctx.fillStyle = '#666'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText(label, vx + Math.cos(midA) * 42, vy + Math.sin(midA) * 42);
+        });
+    }
+
+    // Allow Enter key to submit for free-text
+    document.getElementById('textAnswer').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (!isAnswered) checkAnswer();
+        }
+    });
+</script>
+}

@@ -1,0 +1,61 @@
+{
+  "id": "potenser-og-kvadratroedder",
+  "category": "Tal og algebra",
+  "title": "Potenser og kvadratr\u00f8dder",
+  "description": "\u00d8v dig i potenser, kvadrattal og kvadratr\u00f8dder",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Potenser og kvadratr\u00f8dder",
+      "content": "<strong>Potens:</strong> Et tal ganget med sig selv et antal gange.<br><br>2\u00b3 = 2 \u00d7 2 \u00d7 2 = 8<br>5\u00b2 = 5 \u00d7 5 = 25<br><br><strong>Regneregler:</strong><br>\u2022 a\u207f \u00d7 a\u1d50 = a\u207f\u207a\u1d50<br>\u2022 a\u207f \u00f7 a\u1d50 = a\u207f\u207b\u1d50<br>\u2022 (a\u207f)\u1d50 = a\u207f\u00b7\u1d50<br>\u2022 a\u2070 = 1<br><br><strong>Kvadratrod:</strong> Den omvendte operation af at opløfte i anden.<br>\u221a25 = 5, fordi 5\u00b2 = 25",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Hvad er 2\u2075?",
+      "correctAnswer": "32",
+      "hint": "2 \u00d7 2 \u00d7 2 \u00d7 2 \u00d7 2"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er 3\u00b3?",
+      "options": ["9", "18", "27", "81"],
+      "correctAnswer": "27",
+      "hint": "3 \u00d7 3 \u00d7 3"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "Hvad er \u221a144?",
+      "correctAnswer": "12",
+      "hint": "Hvilket tal ganget med sig selv giver 144?"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "Hvad er 10\u2074?",
+      "options": ["100", "1000", "10000", "100000"],
+      "correctAnswer": "10000",
+      "hint": "10 \u00d7 10 \u00d7 10 \u00d7 10"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "Hvad er 4\u00b2 + 3\u00b2?",
+      "correctAnswer": "25",
+      "hint": "4\u00b2 = 16, 3\u00b2 = 9. 16 + 9 = ?"
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "text": "Hvad er \u221a81?",
+      "options": ["7", "8", "9", "10"],
+      "correctAnswer": "9",
+      "hint": "9 \u00d7 9 = 81"
+    }
+  ]
+}

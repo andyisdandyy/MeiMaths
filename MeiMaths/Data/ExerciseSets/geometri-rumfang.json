@@ -1,0 +1,53 @@
+{
+  "id": "geometri-rumfang",
+  "category": "Geometri",
+  "title": "Rumfang og overflade",
+  "description": "\u00d8v dig i at beregne rumfang og overflade af kasser, cylindre og kugler",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Rumfang og overflade",
+      "content": "<strong>Kasse (rektangul\u00e6r boks):</strong><br>\u2022 Rumfang: V = l \u00d7 b \u00d7 h<br>\u2022 Overflade: O = 2(lb + lh + bh)<br><br><strong>Cylinder:</strong><br>\u2022 Rumfang: V = \u03c0 \u00d7 r\u00b2 \u00d7 h<br>\u2022 Overflade: O = 2\u03c0r\u00b2 + 2\u03c0rh<br><br><strong>Kugle:</strong><br>\u2022 Rumfang: V = 4/3 \u00d7 \u03c0 \u00d7 r\u00b3<br>\u2022 Overflade: O = 4\u03c0r\u00b2<br><br>Husk: \u03c0 \u2248 3,14",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "En kasse er 5 cm lang, 4 cm bred og 3 cm h\u00f8j. Hvad er rumfanget i cm\u00b3?",
+      "correctAnswer": "60",
+      "hint": "V = l \u00d7 b \u00d7 h = 5 \u00d7 4 \u00d7 3"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "En cylinder har radius 3 cm og h\u00f8jde 10 cm. Hvad er rumfanget? (afrund til hele tal)",
+      "options": ["94 cm\u00b3", "188 cm\u00b3", "283 cm\u00b3", "377 cm\u00b3"],
+      "correctAnswer": "283 cm\u00b3",
+      "hint": "V = \u03c0 \u00d7 r\u00b2 \u00d7 h = 3,14 \u00d7 9 \u00d7 10 \u2248 283"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "En terning har sider p\u00e5 6 cm. Hvad er overfladearealet i cm\u00b2?",
+      "correctAnswer": "216",
+      "hint": "En terning har 6 ens sider. O = 6 \u00d7 s\u00b2 = 6 \u00d7 36"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "En kugle har radius 3 cm. Hvad er rumfanget? (afrund til hele tal)",
+      "options": ["38 cm\u00b3", "85 cm\u00b3", "113 cm\u00b3", "170 cm\u00b3"],
+      "correctAnswer": "113 cm\u00b3",
+      "hint": "V = 4/3 \u00d7 \u03c0 \u00d7 r\u00b3 = 4/3 \u00d7 3,14 \u00d7 27 \u2248 113"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "En kasse er 10 cm lang, 5 cm bred og 4 cm h\u00f8j. Hvad er overfladearealet i cm\u00b2?",
+      "correctAnswer": "220",
+      "hint": "O = 2(lb + lh + bh) = 2(50 + 40 + 20) = 2 \u00d7 110"
+    }
+  ]
+}

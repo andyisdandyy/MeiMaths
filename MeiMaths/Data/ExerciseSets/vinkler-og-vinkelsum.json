@@ -1,0 +1,53 @@
+{
+  "id": "vinkler-og-vinkelsum",
+  "category": "Geometri",
+  "title": "Vinkler og vinkelsum",
+  "description": "\u00d8v dig i vinkler, vinkelsum i trekanter og firkanter",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Vinkler og vinkelsum",
+      "content": "<strong>Vinkeltyper:</strong><br>\u2022 Spids vinkel: 0\u00b0 \u2013 90\u00b0<br>\u2022 Ret vinkel: 90\u00b0<br>\u2022 Stump vinkel: 90\u00b0 \u2013 180\u00b0<br>\u2022 Lige vinkel: 180\u00b0<br><br><strong>Vinkelsum:</strong><br>\u2022 Trekant: 180\u00b0<br>\u2022 Firkant: 360\u00b0<br>\u2022 Polygon med n sider: (n \u2212 2) \u00d7 180\u00b0<br><br><strong>Topvinkler</strong> er lige store.<br><strong>Nabovinkler</strong> l\u00e6gges sammen til 180\u00b0.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "En trekant har vinkler p\u00e5 40\u00b0 og 75\u00b0. Hvad er den tredje vinkel?",
+      "correctAnswer": "65",
+      "hint": "Vinkelsum i en trekant = 180\u00b0. 180 \u2212 40 \u2212 75 = ?"
+    },
+    {
+      "id": 3,
+      "type": "multiple-choice",
+      "text": "Hvad er vinkelsummen i en firkant?",
+      "options": ["180\u00b0", "270\u00b0", "360\u00b0", "540\u00b0"],
+      "correctAnswer": "360\u00b0",
+      "hint": "En firkant kan deles i to trekanter. 2 \u00d7 180\u00b0 = ?"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "En ligebenet trekant har en topvinkel p\u00e5 50\u00b0. Hvad er hver af basisvinklerne?",
+      "correctAnswer": "65",
+      "hint": "De to basisvinkler er ens. 180 \u2212 50 = 130. 130 \u00f7 2 = ?"
+    },
+    {
+      "id": 5,
+      "type": "multiple-choice",
+      "text": "To vinkler er supplementvinkler. Den ene er 110\u00b0. Hvad er den anden?",
+      "options": ["70\u00b0", "80\u00b0", "90\u00b0", "110\u00b0"],
+      "correctAnswer": "70\u00b0",
+      "hint": "Supplementvinkler l\u00e6gges sammen til 180\u00b0. 180 \u2212 110 = ?"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "En retvinklet trekant har en vinkel p\u00e5 35\u00b0. Hvad er den tredje vinkel?",
+      "correctAnswer": "55",
+      "hint": "En ret vinkel = 90\u00b0. 180 \u2212 90 \u2212 35 = ?"
+    }
+  ]
+}
