@@ -1,0 +1,37 @@
+@page
+@model MeiMaths.Pages.Account.MyDataModel
+@{
+    ViewData["Title"] = "Min data";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center mb-4">📂 Min data</h3>
+
+                <p>
+                    I henhold til GDPR Art. 15 har du ret til indsigt i dine data.
+                    Klik nedenfor for at downloade alle dine personlige oplysninger og quiz-resultater som en JSON-fil.
+                </p>
+
+                <h5 class="mt-4">Hvad inkluderes i din download?</h5>
+                <ul>
+                    <li>Brugernavn og visningsnavn</li>
+                    <li>Tidspunkt for accept af privatlivspolitik</li>
+                    <li>Alle dine quiz-resultater (score, emne, tidspunkt)</li>
+                </ul>
+
+                <form method="post" asp-page-handler="Download">
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                        ⬇️ Download mine data (JSON)
+                    </button>
+                </form>
+
+                <p class="text-center mt-3 mb-0">
+                    <a asp-page="/Account/MyResults">← Tilbage til mine resultater</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
