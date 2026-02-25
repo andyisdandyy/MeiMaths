@@ -6,7 +6,7 @@ services:
       context: ..
       dockerfile: MeiMaths/Dockerfile
     ports:
-      - "80:80"
+      - "4185:4185"
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Production

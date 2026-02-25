@@ -26,8 +26,8 @@ COPY --from=build /app/publish .
 # Opret data-mappe til SQLite database (mountes som volume)
 RUN mkdir -p /app/data
 
-ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://+:4185
 ENV ASPNETCORE_ENVIRONMENT=Production
-EXPOSE 80
+EXPOSE 4185
 
 ENTRYPOINT ["dotnet", "MeiMaths.dll"]
