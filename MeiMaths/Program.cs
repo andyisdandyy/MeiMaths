@@ -43,7 +43,18 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
+    db.Database.EnsureCreated();
+
+    // Add PrivacyPolicyAcceptedAt column to existing databases that were created before GDPR update
+    try
+    {
+        await db.Database.ExecuteSqlRawAsync(
+            "ALTER TABLE AspNetUsers ADD COLUMN PrivacyPolicyAcceptedAt TEXT NULL;");
+    }
+    catch (Microsoft.Data.Sqlite.SqliteException)
+    {
+        // Column already exists — ignore
+    }
 
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     if (!await roleManager.RoleExistsAsync("Admin"))
