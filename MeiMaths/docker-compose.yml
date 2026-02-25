@@ -1,4 +1,4 @@
-version: '2.5'
+version: '2.6'
 services:
   meimaths:
     build:
@@ -6,7 +6,7 @@ services:
       dockerfile: MeiMaths/Dockerfile
     image: meimaths:latest
     ports:
-      - "4185:4185"
+      - "4185:80"
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
