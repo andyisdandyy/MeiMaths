@@ -1,15 +1,16 @@
 version: '3.8'
 services:
   meimaths:
-    image: meimaths:latest
     build:
-      context: ..
+      context: https://github.com/andyisdandyy/MeiMaths.git#master
       dockerfile: MeiMaths/Dockerfile
+    image: meimaths:latest
     ports:
       - "4185:4185"
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     volumes:
       - meimaths-data:/app/data
 
