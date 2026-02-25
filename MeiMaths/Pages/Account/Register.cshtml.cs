@@ -22,6 +22,9 @@ public class RegisterModel : PageModel
     [BindProperty]
     public string PasswordConfirm { get; set; } = string.Empty;
 
+    [BindProperty]
+    public bool AcceptPrivacy { get; set; }
+
     public string? ErrorMessage { get; set; }
 
     public RegisterModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
@@ -46,10 +49,17 @@ public class RegisterModel : PageModel
             return Page();
         }
 
+        if (!AcceptPrivacy)
+        {
+            ErrorMessage = "Du skal acceptere privatlivspolitikken for at oprette en konto.";
+            return Page();
+        }
+
         var user = new ApplicationUser
         {
             UserName = Username,
-            DisplayName = string.IsNullOrWhiteSpace(DisplayName) ? Username : DisplayName
+            DisplayName = string.IsNullOrWhiteSpace(DisplayName) ? Username : DisplayName,
+            PrivacyPolicyAcceptedAt = DateTime.UtcNow
         };
 
         var result = await _userManager.CreateAsync(user, Password);

@@ -43,7 +43,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.EnsureCreated();
+    db.Database.Migrate();
 
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     if (!await roleManager.RoleExistsAsync("Admin"))
@@ -53,7 +53,12 @@ using (var scope = app.Services.CreateScope())
     var admin = await userManager.FindByNameAsync("admin");
     if (admin is null)
     {
-        admin = new ApplicationUser { UserName = "admin", DisplayName = "Administrator" };
+        admin = new ApplicationUser
+        {
+            UserName = "admin",
+            DisplayName = "Administrator",
+            PrivacyPolicyAcceptedAt = DateTime.UtcNow
+        };
         await userManager.CreateAsync(admin, "admin1234");
         await userManager.AddToRoleAsync(admin, "Admin");
     }

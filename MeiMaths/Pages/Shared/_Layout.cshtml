@@ -43,10 +43,20 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Account/MyResults">📋 Mine resultater</a>
                             </li>
-                            <li class="nav-item">
-                                <form asp-page="/Account/Logout" method="post" class="d-inline">
-                                    <button type="submit" class="nav-link btn btn-link text-dark">Log ud</button>
-                                </form>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    ⚙️ Konto
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" asp-page="/Account/MyData">📂 Min data</a></li>
+                                    <li><a class="dropdown-item text-danger" asp-page="/Account/DeleteAccount">🗑️ Slet konto</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <form asp-page="/Account/Logout" method="post">
+                                            <button type="submit" class="dropdown-item">Log ud</button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
@@ -70,8 +80,9 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - MeiMaths - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        <div class="container d-flex justify-content-between">
+            <span>&copy; 2026 - MeiMaths</span>
+            <span><a asp-page="/Privacy">🔒 Privatlivspolitik</a></span>
         </div>
     </footer>
 

@@ -1,0 +1,45 @@
+@page
+@model MeiMaths.Pages.Account.DeleteAccountModel
+@{
+    ViewData["Title"] = "Slet konto";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-danger">
+            <div class="card-body p-4">
+                <h3 class="card-title text-center text-danger mb-4">⚠️ Slet konto</h3>
+
+                <div class="alert alert-danger">
+                    <strong>Advarsel:</strong> Denne handling er permanent og kan ikke fortrydes.
+                    Følgende data vil blive slettet:
+                    <ul class="mb-0 mt-2">
+                        <li>Din brugerkonto</li>
+                        <li>Alle dine quiz-resultater</li>
+                        <li>Alle tilknyttede data</li>
+                    </ul>
+                </div>
+
+                @if (Model.ErrorMessage is not null)
+                {
+                    <div class="alert alert-warning">@Model.ErrorMessage</div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="Password" class="form-label">Bekræft med din adgangskode</label>
+                        <input asp-for="Password" type="password" class="form-control form-control-lg" />
+                    </div>
+                    <button type="submit" class="btn btn-danger btn-lg w-100"
+                            onclick="return confirm('Er du helt sikker på, at du vil slette din konto permanent?');">
+                        🗑️ Slet min konto permanent
+                    </button>
+                </form>
+
+                <p class="text-center mt-3 mb-0">
+                    <a asp-page="/Account/MyResults">← Tilbage til mine resultater</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
