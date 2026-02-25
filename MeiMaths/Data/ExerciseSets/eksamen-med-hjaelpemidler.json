@@ -1,0 +1,94 @@
+{
+  "id": "eksamen-med-hjaelpemidler",
+  "category": "Eksamensopgaver",
+  "title": "Eksamen — Med hjælpemidler (udkast)",
+  "description": "Øv dig i typiske eksamensopgaver hvor lommeregner er tilladt",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Om denne prøve",
+      "content": "<strong>⚠️ Dette er et udkast</strong> på hvordan eksamensopgaver kan se ud.<br><br>Opgaverne er <strong>ikke</strong> nødvendigvis samme slags opgaver eller sværhedsgrad som til den rigtige eksamen.<br>Brug dem som inspiration og øvelse.<br><br>Lommeregner er tilladt i denne del.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Et kort har målestok 1:25000. En strækning måler 6,4 cm på kortet. Hvor lang er strækningen i virkeligheden? Angiv svaret i km.",
+      "correctAnswer": "1.6",
+      "hint": "6,4 × 25000 = 160000 cm = 1600 m = ? km"
+    },
+    {
+      "id": 3,
+      "type": "free-text",
+      "text": "En cylinder har radius 4 cm og højde 12 cm. Beregn rumfanget. Afrund til hele tal.",
+      "correctAnswer": "603",
+      "hint": "V = π × r² × h = π × 16 × 12"
+    },
+    {
+      "id": 4,
+      "type": "free-text",
+      "text": "En vare koster 599 kr. Den sættes ned med 25%. Hvad er den nye pris?",
+      "correctAnswer": "449.25",
+      "hint": "Ny pris = 599 × 0,75"
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "Beregn gennemsnittet af tallene: 14, 23, 8, 31, 19",
+      "correctAnswer": "19",
+      "hint": "Sum = 95, antal = 5"
+    },
+    {
+      "id": 6,
+      "type": "multiple-choice",
+      "text": "En retvinklet trekant har katetere på 7 cm og 24 cm. Hvad er hypotenusen?",
+      "options": ["25 cm", "26 cm", "27 cm", "31 cm"],
+      "correctAnswer": "25 cm",
+      "hint": "c² = 7² + 24² = 49 + 576 = 625",
+      "graph": {
+        "triangle": {
+          "sideA": 7,
+          "sideB": 24,
+          "angleC": 90,
+          "labels": {
+            "sideA": "a = 7",
+            "sideB": "b = 24",
+            "sideC": "c = ?",
+            "angleC": "90°"
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": "free-text",
+      "text": "En funktion er givet ved f(x) = 2x + 5. Beregn f(−3).",
+      "correctAnswer": "-1",
+      "hint": "f(−3) = 2 × (−3) + 5 = −6 + 5"
+    },
+    {
+      "id": 8,
+      "type": "free-text",
+      "text": "Et rektangulært areal er 120 m². Den ene side er 8 m. Hvor lang er den anden side?",
+      "correctAnswer": "15",
+      "hint": "Areal = længde × bredde → 120 = 8 × ?"
+    },
+    {
+      "id": 9,
+      "type": "multiple-choice",
+      "text": "Hvad er sandsynligheden for at slå mindst 5 med én terning?",
+      "options": ["1/6", "1/3", "1/2", "2/3"],
+      "correctAnswer": "1/3",
+      "hint": "Gunstige: 5 og 6 = 2 ud af 6 mulige"
+    },
+    {
+      "id": 10,
+      "type": "free-text",
+      "text": "En cirkel har diameter 14 cm. Beregn omkredsen. Afrund til én decimal.",
+      "correctAnswer": "44.0",
+      "hint": "O = π × d = π × 14"
+    }
+  ]
+}

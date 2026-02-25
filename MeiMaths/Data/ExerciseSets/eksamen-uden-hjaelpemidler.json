@@ -1,0 +1,82 @@
+{
+  "id": "eksamen-uden-hjaelpemidler",
+  "category": "Eksamensopgaver",
+  "title": "Eksamen — Uden hjælpemidler (udkast)",
+  "description": "Øv dig i typiske eksamensopgaver der skal løses uden lommeregner",
+  "questions": [
+    {
+      "id": 1,
+      "type": "info",
+      "text": "Om denne prøve",
+      "content": "<strong>⚠️ Dette er et udkast</strong> på hvordan eksamensopgaver kan se ud.<br><br>Opgaverne er <strong>ikke</strong> nødvendigvis samme slags opgaver eller sværhedsgrad som til den rigtige eksamen.<br>Brug dem som inspiration og øvelse.",
+      "correctAnswer": "",
+      "hint": ""
+    },
+    {
+      "id": 2,
+      "type": "free-text",
+      "text": "Beregn: 3/4 + 2/3",
+      "correctAnswer": "17/12",
+      "hint": "Fælles nævner: 12. Så 9/12 + 8/12"
+    },
+    {
+      "id": 3,
+      "type": "free-text",
+      "text": "Løs ligningen: 5x − 3 = 22",
+      "correctAnswer": "5",
+      "hint": "5x = 25, x = ?"
+    },
+    {
+      "id": 4,
+      "type": "multiple-choice",
+      "text": "Hvad er 15% af 240?",
+      "options": ["24", "30", "36", "42"],
+      "correctAnswer": "36",
+      "hint": "15% = 0,15. Så 0,15 × 240"
+    },
+    {
+      "id": 5,
+      "type": "free-text",
+      "text": "En trekant har vinkler på 52° og 73°. Hvad er den tredje vinkel?",
+      "correctAnswer": "55",
+      "hint": "Vinkelsum i en trekant = 180°"
+    },
+    {
+      "id": 6,
+      "type": "free-text",
+      "text": "Beregn: (−4) × (−7)",
+      "correctAnswer": "28",
+      "hint": "Minus gange minus giver plus"
+    },
+    {
+      "id": 7,
+      "type": "multiple-choice",
+      "text": "Hvilket tal er størst?",
+      "options": ["3/5", "0,55", "58%", "0,7"],
+      "correctAnswer": "0,7",
+      "hint": "Omregn alle til decimaltal: 3/5 = 0,6 — 58% = 0,58"
+    },
+    {
+      "id": 8,
+      "type": "free-text",
+      "text": "Hvad er 2⁴ + 3²?",
+      "correctAnswer": "25",
+      "hint": "2⁴ = 16 og 3² = 9"
+    },
+    {
+      "id": 9,
+      "type": "free-text",
+      "text": "Forkort brøken 24/36 så meget som muligt.",
+      "correctAnswer": "2/3",
+      "hint": "Største fælles divisor af 24 og 36 er 12"
+    },
+    {
+      "id": 10,
+      "type": "multiple-choice",
+      "text": "En rektangel har sidelængderne 8 cm og 5 cm. Hvad er arealet?",
+      "options": ["13 cm²", "26 cm²", "40 cm²", "80 cm²"],
+      "correctAnswer": "40 cm²",
+      "hint": "Areal = længde × bredde"
+    }
+  ]
+}

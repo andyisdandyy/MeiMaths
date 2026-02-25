@@ -1,0 +1,48 @@
+@page
+@model MeiMaths.Pages.CategoryModel
+@{
+    var icon = Model.CategoryName switch
+    {
+        "Tal og algebra" => "🔢",
+        "Geometri" => "📐",
+        "Statistik og sandsynlighed" => "📊",
+        "Funktioner" => "📈",
+        "Ligninger" => "🧮",
+        "Blandet" => "🎲",
+        "Eksamensopgaver" => "📝",
+        _ => "📘"
+    };
+    ViewData["Title"] = Model.CategoryName;
+}
+
+<div class="mb-4">
+    <a asp-page="/Index" class="btn btn-outline-secondary">← Tilbage til kategorier</a>
+</div>
+
+<h2 class="mb-4">@icon @Model.CategoryName</h2>
+
+@if (Model.IsExam)
+{
+    <div class="alert alert-warning">
+        <strong>⚠️ Bemærk:</strong> Eksamensopgaverne er et <strong>udkast</strong> på hvordan de kan se ud.
+        De er ikke nødvendigvis samme slags opgaver eller sværhedsgrad som til den rigtige eksamen.
+    </div>
+}
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+    @foreach (var set in Model.ExerciseSets)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm exercise-card">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">@set.Title</h5>
+                    <p class="card-text text-muted">@set.Description</p>
+                    <p class="card-text mt-auto">
+                        <small class="text-body-secondary">@set.Questions.Count opgaver</small>
+                    </p>
+                    <a asp-page="/Quiz" asp-route-id="@set.Id" class="btn btn-primary mt-2">Start øvelse →</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

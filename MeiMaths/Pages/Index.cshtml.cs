@@ -8,7 +8,7 @@ namespace MeiMaths.Pages
     {
         private readonly ExerciseSetService _exerciseSetService;
 
-        public List<ExerciseSet> ExerciseSets { get; set; } = [];
+        public List<CategoryInfo> Categories { get; set; } = [];
 
         public IndexModel(ExerciseSetService exerciseSetService)
         {
@@ -17,7 +17,17 @@ namespace MeiMaths.Pages
 
         public void OnGet()
         {
-            ExerciseSets = _exerciseSetService.GetAll();
+            Categories = _exerciseSetService.GetAll()
+                .GroupBy(s => s.Category)
+                .Select(g => new CategoryInfo { Name = g.Key, Count = g.Count() })
+                .OrderBy(c => c.Name)
+                .ToList();
         }
+    }
+
+    public class CategoryInfo
+    {
+        public string Name { get; set; } = "";
+        public int Count { get; set; }
     }
 }

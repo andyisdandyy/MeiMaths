@@ -25,9 +25,16 @@ Tilføj en ny fil → den dukker automatisk op på forsiden, grupperet efter kat
 | `"Geometri"`                   | 📐   | `"geometri-areal"`               |
 | `"Statistik og sandsynlighed"` | 📊   | `"statistik-sandsynlighed"`      |
 | `"Funktioner"`                 | 📈   | `"lineaere-funktioner"`          |
+| `"Blandet"`                    | 🎲   | `"blandet-regning"`              |
+| `"Eksamensopgaver"`            | 📝   | `"eksamen-uden-hjaelpemidler"`   |
 | `"Andet"`                      | 📘   | (standard hvis ingen kategori)   |
 
 Du kan frit opfinde nye kategorier. Forsiden grupperer automatisk.
+
+> **⚠️ Eksamensopgaver — vigtigt:**
+> Opgavesæt i kategorien `"Eksamensopgaver"` er et **udkast** på hvordan eksamensopgaver kan se ud.
+> De er **ikke** nødvendigvis samme slags opgaver eller sværhedsgrad som til den rigtige eksamen.
+> Brug dem som inspiration og øvelse — ikke som garanti for hvad der kommer til eksamen.
 
 ### ID-konvention
 
