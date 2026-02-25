@@ -1,4 +1,3 @@
-version: '2.6'
 services:
   meimaths:
     build:
@@ -6,13 +5,15 @@ services:
       dockerfile: MeiMaths/Dockerfile
     image: meimaths:latest
     ports:
-      - "4185:80"
+      - "4185:4185"
     restart: unless-stopped
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     volumes:
       - meimaths-data:/app/data
+      - dataprotection-keys:/root/.aspnet/DataProtection-Keys
 
 volumes:
   meimaths-data:
+  dataprotection-keys:
