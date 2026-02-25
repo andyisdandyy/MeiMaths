@@ -32,6 +32,12 @@
                         <label for="PasswordConfirm" class="form-label">Gentag adgangskode</label>
                         <input asp-for="PasswordConfirm" type="password" class="form-control form-control-lg" />
                     </div>
+                    <div class="mb-3 form-check">
+                        <input asp-for="AcceptPrivacy" class="form-check-input" />
+                        <label asp-for="AcceptPrivacy" class="form-check-label">
+                            Jeg accepterer <a asp-page="/Privacy" target="_blank">privatlivspolitikken</a>
+                        </label>
+                    </div>
                     <button type="submit" class="btn btn-success btn-lg w-100">Opret bruger</button>
                 </form>
 

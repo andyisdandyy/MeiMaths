@@ -1,8 +1,92 @@
 ﻿@page
 @model PrivacyModel
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Privatlivspolitik";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4">🔒 Privatlivspolitik</h1>
+        <p class="text-muted">Sidst opdateret: @DateTime.Now.ToString("d. MMMM yyyy", new System.Globalization.CultureInfo("da-DK"))</p>
+
+        <h4>1. Dataansvarlig</h4>
+        <p>
+            MeiMaths drives som et hobbyprojekt.
+            Kontakt os via <a href="https://github.com/andyisdandyy/MeiMaths" target="_blank">GitHub</a> ved spørgsmål om dine data.
+        </p>
+
+        <h4>2. Hvilke data indsamler vi?</h4>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Data</th>
+                    <th>Formål</th>
+                    <th>Retsgrundlag</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Brugernavn &amp; visningsnavn</td>
+                    <td>Identifikation og personlig oplevelse</td>
+                    <td>Samtykke (Art. 6, stk. 1, litra a)</td>
+                </tr>
+                <tr>
+                    <td>Adgangskode (hashed)</td>
+                    <td>Sikker login</td>
+                    <td>Samtykke</td>
+                </tr>
+                <tr>
+                    <td>Quiz-resultater (score, tidspunkt)</td>
+                    <td>Fremskridtssporing</td>
+                    <td>Samtykke</td>
+                </tr>
+                <tr>
+                    <td>Autentificerings-cookie</td>
+                    <td>Holde dig logget ind</td>
+                    <td>Nødvendig for tjenesten</td>
+                </tr>
+                <tr>
+                    <td>IP-adresse, tidspunkt, URL, user agent (via Cloudflare)</td>
+                    <td>Sikkerhed, DDoS-beskyttelse, caching</td>
+                    <td>Legitim interesse (Art. 6, stk. 1, litra f)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>3. Tredjeparter</h4>
+        <p>Vi deler <strong>ikke</strong> dine data med tredjeparter til kommercielle formål. Der bruges ingen externe analytics, reklamer eller tracking-tjenester.</p>
+        <p>
+            Vi benytter <strong>Cloudflare</strong> som DNS-proxy. Al trafik til og fra siden passerer gennem Cloudflares netværk,
+            som derved kan behandle tekniske data (IP-adresse, tidspunkt, URL, user agent og lignende) med henblik på
+            sikkerhed og DDoS-beskyttelse. Cloudflare kan opbevare disse data uden for EØS og fungerer som databehandler på vores vegne.
+            Se Cloudflares privatlivspolitik og DPA:
+            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacypolicy</a> og
+            <a href="https://www.cloudflare.com/agreements/data-processing-addendum/" target="_blank">Data Processing Addendum</a>.
+        </p>
+
+        <h4>4. Cookies</h4>
+        <p>
+            Vi bruger en <strong>funktionel autentificerings-cookie</strong> til at holde dig logget ind.
+            Derudover kan Cloudflare sætte tekniske cookies (fx <code>__cf_bm</code>, <code>cf_clearance</code>)
+            til bot-management og sikkerhedsformål. Disse er nødvendige for at tjenesten kan fungere sikkert
+            og kræver ikke samtykke. Der bruges ingen tracking- eller markedsføringscookies.
+        </p>
+
+        <h4>5. Opbevaring</h4>
+        <p>Dine data opbevares i en database på serveren, så længe din konto eksisterer. Når du sletter din konto, slettes alle dine data permanent.</p>
+
+        <h4>6. Dine rettigheder (GDPR)</h4>
+        <ul>
+            <li><strong>Indsigtsret (Art. 15)</strong> — Du kan downloade alle dine data fra <a asp-page="/Account/MyData">Min data</a>.</li>
+            <li><strong>Ret til sletning (Art. 17)</strong> — Du kan slette din konto og alle tilknyttede data fra <a asp-page="/Account/DeleteAccount">Slet konto</a>.</li>
+            <li><strong>Ret til berigtigelse (Art. 16)</strong> — Kontakt os for at rette eventuelle fejl i dine data.</li>
+            <li><strong>Ret til dataportabilitet (Art. 20)</strong> — Brug download-funktionen til at eksportere dine data som JSON.</li>
+        </ul>
+
+        <h4>7. Sikkerhed</h4>
+        <p>Adgangskoder gemmes med kryptografisk hashing (ASP.NET Identity). Vi gemmer aldrig adgangskoder i klartekst.</p>
+
+        <h4>8. Ændringer</h4>
+        <p>Vi forbeholder os retten til at opdatere denne politik. Ændringer træder i kraft ved offentliggørelse på denne side.</p>
+    </div>
+</div>
